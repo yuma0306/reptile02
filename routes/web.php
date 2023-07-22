@@ -18,14 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/owner', function () {
+    return view('owner.index');
+})->middleware(['auth', 'verified'])->name('owner.index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/owner/profile', [ProfileController::class, 'edit'])->name('owner.profile.edit');
+    Route::patch('/owner/profile', [ProfileController::class, 'update'])->name('owner.profile.update');
+    Route::delete('/owner/profile', [ProfileController::class, 'destroy'])->name('owner.profile.destroy');
 });
 
 require __DIR__.'/auth.php';
