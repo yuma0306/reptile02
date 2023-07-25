@@ -13,9 +13,11 @@ class ShopController extends Controller
     public function index()
     {
         // ショップ情報を全て取得する
-        $shops = Shop::all();
+        // $shops = Shop::all();
         // 取得したショップ情報をビューに渡して、owner/shop/index.blade.php を表示する
+        $shops = Auth::user()->shops;
         return view('owner.shop.index', compact('shops'));
+        // return view('owner.shop.index', compact('shops'));
     }
 
     // ショップ情報登録画面表示
@@ -45,6 +47,14 @@ class ShopController extends Controller
         // ログインユーザーのIDと一緒にデータを保存
         auth()->user()->shops()->create($validatedData);
         return redirect()->route('owner.shop.index')->with('success', 'ショップ情報が登録されました');
+    }
+
+    // ショップ情報画面
+    public function show($id)
+    {
+        // 現在ログインしているユーザーに紐付けられたショップのみを取得
+        $shop = Auth::user()->shops()->findOrFail($id);
+        return view('owner.shop.show', compact('shop'));
     }
 
     // ショップ情報編集画面表示

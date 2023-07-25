@@ -4,6 +4,14 @@
     <title>エキゾサーチ</title>
 </head>
 <body>
+    <ul>
+        <li>
+            <a href="/register">登録</a>
+        </li>
+        <li>
+            <a href="/login">ログイン</a>
+        </li>
+    </ul>
     <h1>エキゾサーチ</h1>
     <h2>新着入荷</h2>
     <ul>

@@ -37,7 +37,8 @@ Route::prefix('owner')->middleware('auth')->group(function () {
     // ショップ情報編集画面へのルート
     // Route::get('/shop/{id}/edit', [ShopController::class, 'edit'])->name('owner.shop.edit');
     // ショップ情報更新処理へのルート
-    // Route::put('/shop/{id}', [ShopController::class, 'update'])->name('owner.shop.update');
+    Route::get('/shop/{id}', [ShopController::class, 'show'])->name('owner.shop.show');
+    Route::put('/shop/{id}', [ShopController::class, 'update'])->name('owner.shop.update');
 });
 
 Route::middleware('auth')->group(function () {
