@@ -13,16 +13,16 @@
         </li>
     </ul>
     <h1>エキゾサーチ</h1>
-    <h2>新着入荷</h2>
-    <ul>
-        {{--  @foreach ($pets as $pet)
-            <li>
-                <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
-            </li>
-        @endforeach  --}}
-    </ul>
+    <h2>入荷情報</h2>
+    <a href="/pet">入荷一覧</a>
+    {{--  @foreach ($pets as $pet)
+        <li>
+            <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
+        </li>
+    @endforeach  --}}
     <h2>ショップを探す</h2>
-    <dl>
+    <a href="/shop">ショップ一覧</a>
+    {{--  <dl>
         <dt>北海道・東北</dt>
         <dd>
             <a href="">北海道</a>
@@ -39,6 +39,6 @@
         <dd>
             <a href="">徳島</a>
         </dd>
-    </dl>
+    </dl>  --}}
 </body>
 </html>

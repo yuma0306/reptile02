@@ -12,7 +12,7 @@ class Shop extends Model
         'business_hours',
         'regular_holiday',
         'phone',
-        'payment_methods',
+        'payment_method',
         'access_method',
         'postal_code',
         'address',
