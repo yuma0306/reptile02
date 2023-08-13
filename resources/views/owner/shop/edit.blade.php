@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>ショップ</h1>
-    <form action="{{ route('owner.shop.update', ['id' => $shop->id]) }}" method="post">
+    <form action="{{ route('owner.shop.update', ['id' => $shop->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div>
@@ -62,6 +62,11 @@
         <div>
             <label for="website">公式サイト</label>
             <input type="text" name="website" id="website" value="{{ $shop->website }}">
+        </div>
+        <div>
+            <label for="image">店舗画像</label>
+            <input type="file" id="website" name="image" value="{{ $shop->image }}">
+            <img src="{{ asset('storage/' . $shop->image) }}" alt="店舗画像">
         </div>
         <button type="submit">更新</button>
     </form>

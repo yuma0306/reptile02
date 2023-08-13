@@ -10,9 +10,10 @@
     <h1>ショップ一覧</h1>
     <ul>
         @foreach($shops as $shop)
-            <li>
-                <a href="/owner/shop/{{ $shop->id }}">{{ $shop->name }}</a>
-            </li>
+        <li>
+            <a href="/owner/shop/{{ $shop->id }}">{{ $shop->name }}</a>
+            <a href="/owner/shop/{{ $shop->id }}/pet/">ペット情報</a>
+        </li>
         @endforeach
     </ul>
 </body>

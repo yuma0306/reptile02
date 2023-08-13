@@ -6,6 +6,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class OwnerShopController extends Controller
 {
@@ -39,7 +40,13 @@ class OwnerShopController extends Controller
             'available_pets' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'available_feeds' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'website' => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        // 画像を更新するかチェック
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $path;
+        }
         // ログインユーザーのIDと一緒にデータを保存
         auth()->user()->shops()->create($validatedData);
         return redirect()->route('owner.shop.index')->with('success', 'ショップ情報が登録されました');
@@ -70,9 +77,20 @@ class OwnerShopController extends Controller
             'available_pets' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'available_feeds' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'website' => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
         // ログインユーザーに紐づくショップ情報を取得
         $shop = auth()->user()->shops()->findOrFail($id);
+        // 画像を更新するかチェック
+        if ($request->hasFile('image')) {
+            // 古い画像を削除する
+            if ($shop->image) {
+                Storage::disk('public')->delete($shop->image);
+            }
+            $path = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $path;
+        }
         // データの更新
         $shop->update($validatedData);
         return redirect()->route('owner.shop.index')->with('success', 'ショップ情報が更新されました');
@@ -81,6 +99,10 @@ class OwnerShopController extends Controller
     public function destroy($id)
     {
         $shop = auth()->user()->shops()->findOrFail($id);
+        // 画像が存在する場合はストレージからも削除する
+        if ($shop->image) {
+            Storage::disk('public')->delete($shop->image);
+        }
         $shop->delete();
         return redirect()->route('owner.shop.index')->with('success', 'ショップが削除されました');
     }

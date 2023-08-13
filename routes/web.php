@@ -6,19 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 // ユーザー向け
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\PetController;
 // オーナー関連
 use App\Http\Controllers\Owner\OwnerShopController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\Owner\OwnerPetController;
 
 // トップーページ
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -27,6 +18,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 // ショップ詳細ページ
 Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
+
+// ペット情報
+Route::get('/pet', [PetController::class, 'index'])->name('pet.index');
+Route::get('/pet/{pet_id}', [PetController::class, 'show'])->name('pet.show');
 
 // オーナートップ
 Route::get('/owner', function () {
@@ -45,6 +40,16 @@ Route::prefix('owner')->middleware('auth')->group(function () {
     Route::get('/shop/{id}', [OwnerShopController::class, 'edit'])->name('owner.shop.edit');
     Route::put('/shop/{id}', [OwnerShopController::class, 'update'])->name('owner.shop.update');
     Route::delete('/shop/{id}', [OwnerShopController::class, 'destroy'])->name('owner.shop.destroy');
+    // 各ショップのペット投稿index
+    Route::get('/shop/{id}/pet', [OwnerPetController::class, 'index'])->name('owner.shop.pet.index');
+    // 各ショップのペット投稿作成
+    Route::get('/shop/{id}/pet/create', [OwnerPetController::class, 'create'])->name('owner.shop.pet.create');
+    Route::post('/shop/{id}/pet/', [OwnerPetController::class, 'store'])->name('owner.shop.pet.store');
+    // 各ショップのペット投稿編集
+    Route::get('/shop/{id}/pet/{pet_id}', [OwnerPetController::class, 'edit'])->name('owner.shop.pet.edit');
+    Route::put('/shop/{shop_id}/pet/{pet_id}', [OwnerPetController::class, 'update'])->name('owner.shop.pet.update');
+    // 各ショップのペット投稿削除
+    Route::delete('/shop/{shop_id}/pet/{pet_id}', [OwnerPetController::class, 'destroy'])->name('owner.shop.pet.destroy');
 });
 
 Route::middleware('auth')->group(function () {

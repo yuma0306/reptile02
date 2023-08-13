@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('shops', function (Blueprint $table) {
-            //
+            $table->string('image')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('shops', function (Blueprint $table) {
-            //
+            $table->dropColumn('image'); // 画像カラムを削除
         });
     }
 };

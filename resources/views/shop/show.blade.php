@@ -60,5 +60,9 @@
         <dt>公式サイト</dt>
         <dd>{{ $shop->website }}</dd>
     </dl>
+    <dl>
+        <dt>店舗画像</dt>
+        <dd><img src="{{ asset('storage/' . $shop->image) }}" alt="店舗画像"></dd>
+    </dl>
 </body>
 </html>

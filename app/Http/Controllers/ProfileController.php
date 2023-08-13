@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -48,10 +49,17 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        // ユーザーに紐づくショップを取得
+        $shops = $user->shops;
+        // ユーザーに紐づくショップの画像を削除する
+        foreach ($shops as $shop) {
+            if ($shop->image) {
+                Storage::disk('public')->delete($shop->image);
+            }
+        }
+
         Auth::logout();
-
         $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

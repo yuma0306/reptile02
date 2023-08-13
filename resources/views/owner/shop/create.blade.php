@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>ショップ情報登録</h1>
-    <form action="{{ route('owner.shop.store') }}" method="post">
+    <form action="{{ route('owner.shop.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="name">ショップ名</label>
@@ -61,6 +61,10 @@
         <div>
             <label for="website">公式サイト</label>
             <input type="text" name="website" id="website">
+        </div>
+        <div>
+            <label for="image">店舗画像</label>
+            <input type="file" id="website" name="image">
         </div>
         <button type="submit">登録</button>
     </form>

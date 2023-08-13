@@ -21,10 +21,16 @@ class Shop extends Model
         'available_pets',
         'available_feeds',
         'website',
+        'image',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function pets()
+    {
+        return $this->hasMany(Pet::class);
     }
 }
