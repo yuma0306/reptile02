@@ -26,6 +26,7 @@ class OwnerShopController extends Controller
     // ショップ情報登録処理
     public function store(Request $request)
     {
+        // dd($request);
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'business_hours' => 'nullable|string|max:255',
@@ -34,13 +35,14 @@ class OwnerShopController extends Controller
             'payment_method' => 'nullable|string|max:255',
             'access_method' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'postal_code' => 'nullable|string|max:255',
+            'pref' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'google_map' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'sns' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'available_pets' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'available_feeds' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'website' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         // 画像を更新するかチェック
         if ($request->hasFile('image')) {
@@ -62,6 +64,7 @@ class OwnerShopController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         // バリデーションの実行
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -71,17 +74,21 @@ class OwnerShopController extends Controller
             'payment_method' => 'nullable|string|max:255',
             'access_method' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'postal_code' => 'nullable|string|max:255',
+            'pref' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'google_map' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'sns' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'available_pets' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'available_feeds' => 'nullable|string|max:65535', // textカラムはmaxが65535
             'website' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        // dd($validatedData);
 
         // ログインユーザーに紐づくショップ情報を取得
         $shop = auth()->user()->shops()->findOrFail($id);
+        // dd($shop);
+
         // 画像を更新するかチェック
         if ($request->hasFile('image')) {
             // 古い画像を削除する

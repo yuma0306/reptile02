@@ -15,6 +15,10 @@
     <h1>エキゾサーチ</h1>
     <h2>入荷情報</h2>
     <a href="/pet">入荷一覧</a>
+    <form action="/pet" method="get">
+        <input type="text" name="keyword" id="keyword">
+        <button type="submit">検索</button>
+    </form>
     {{--  @foreach ($pets as $pet)
         <li>
             <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>

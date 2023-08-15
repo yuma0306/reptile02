@@ -37,6 +37,10 @@
         <dd>{{ $shop->postal_code }}</dd>
     </dl>
     <dl>
+        <dt>都道府県</dt>
+        <dd>{{ $shop->pref }}</dd>
+    </dl>
+    <dl>
         <dt>住所</dt>
         <dd>{{ $shop->address }}</dd>
     </dl>

@@ -16,5 +16,7 @@
         </li>
         @endforeach
     </ul>
+    <hr>
+    <a href="/owner/shop/create">ショップ追加</a>
 </body>
 </html>

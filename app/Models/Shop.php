@@ -15,6 +15,7 @@ class Shop extends Model
         'payment_method',
         'access_method',
         'postal_code',
+        'pref',
         'address',
         'google_map',
         'sns',
