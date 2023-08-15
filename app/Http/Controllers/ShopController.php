@@ -8,10 +8,20 @@ use App\Models\Shop;
 class ShopController extends Controller
 {
     // indexページ
-    public function index()
+    public function index(Request $request)
     {
-        $shops = Shop::all();
-        return view('shop.index', compact('shops'));
+        // $shops = Shop::all();
+        // return view('shop.index', compact('shops'));
+        $keyword = $request->input('keyword');
+        if(!empty($keyword)) {
+            $query = Shop::query();
+            $query->where('pref', 'LIKE', "%{$keyword}%");
+            $shops = $query->get();
+            return view('shop.index', compact('shops', 'keyword'));
+        } else {
+            $shops = Shop::all();
+            return view('shop.index', compact('shops'));
+        }
     }
 
     // 詳細ページ
