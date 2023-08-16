@@ -10,18 +10,26 @@ class ShopController extends Controller
     // indexページ
     public function index(Request $request)
     {
-        // $shops = Shop::all();
-        // return view('shop.index', compact('shops'));
+        $pref = $request->input('pref');
         $keyword = $request->input('keyword');
-        if(!empty($keyword)) {
+
+        if(isset($pref)) {
             $query = Shop::query();
-            $query->where('pref', 'LIKE', "%{$keyword}%");
+            $query->where('pref', 'LIKE', "%{$pref}%");
+            // dd($query->toSql());
+            $shops = $query->get();
+            return view('shop.index', compact('shops', 'pref'));
+        }
+
+        if(isset($keyword)) {
+            $query = Shop::query();
+            $query->where('name', 'LIKE', "%{$keyword}%");
             $shops = $query->get();
             return view('shop.index', compact('shops', 'keyword'));
-        } else {
-            $shops = Shop::all();
-            return view('shop.index', compact('shops'));
         }
+
+        $shops = Shop::all();
+        return view('shop.index', compact('shops'));
     }
 
     // 詳細ページ
