@@ -15,7 +15,22 @@
         </li>
     </ul>
     <hr>
-    <h2>入荷情報</h2>
+    <h2>ペットを探す</h2>
+    <div>
+        <a href="/pet">入荷一覧</a>
+    </div>
+    <dl>
+        <dt>カテゴリーから探す</dt>
+        <dd>
+            <select class="js-select-redirect">
+                <option value="" selected disabled>選択してください</option>
+                <option value="/pet?category=トカゲ">トカゲ</option>
+                <option value="/pet?category=ヘビ">ヘビ</option>
+                <option value="/pet?category=カエル">カエル</option>
+                <option value="/pet?category=その他">その他</option>
+            </select>
+        </dd>
+    </dl>
     <dl>
         <dt>種名で検索</dt>
         <dd>
@@ -25,17 +40,16 @@
             </form>
         </dd>
     </dl>
-    <a href="/pet">入荷一覧</a>
-    <form action="/pet" method="get">
-        <input type="text" name="keyword" id="keyword">
-        <button type="submit">検索</button>
-    </form>
     <hr>
     <h2>ショップを探す</h2>
+    <div>
+        <a href="/shop">ショップ一覧</a>
+    </div>
     <dl>
         <dt>都道府県から探す</dt>
         <dd>
-            <select name="pref" id="js-select-redirect">
+            <select class="js-select-redirect">
+                <option value="" selected disabled>選択してください</option>
                 <option value="/shop?pref=北海道">北海道</option>
                 <option value="/shop?pref=青森県">青森県</option>
                 <option value="/shop?pref=岩手県">岩手県</option>
@@ -95,15 +109,13 @@
             </form>
         </dd>
     </dl>
-    <div>
-        <a href="/shop">ショップ一覧</a>
-    </div>
     <script>
-        const selector = document.getElementById('js-select-redirect');
-        // セレクトタグの値が変更されたときのイベントハンドラを定義
-        selector.addEventListener('change', function() {
-            const value = selector.value;
-            value && (window.location.href = value);
+        const selectors = Array.from(document.getElementsByClassName('js-select-redirect'));
+        selectors.forEach(selector => {
+            selector.addEventListener('change', function() {
+                const value = selector.value;
+                value && (window.location.href = value);
+            });
         });
     </script>
 </body>

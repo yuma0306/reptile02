@@ -16,7 +16,6 @@ class ShopController extends Controller
         if(isset($pref)) {
             $query = Shop::query();
             $query->where('pref', 'LIKE', "%{$pref}%");
-            // dd($query->toSql());
             $shops = $query->get();
             return view('shop.index', compact('shops', 'pref'));
         }
