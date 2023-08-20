@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pet;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // $pets = Pet::all();
-        // $shops = Shop::all();
-        // return view('home', compact('pets', 'shops'));
-        return view('home');
+        $pets = Pet::latest()->take(5)->get();
+        return view('home', compact('pets'));
     }
 }

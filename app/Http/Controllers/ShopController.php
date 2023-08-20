@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // model
 use App\Models\Shop;
+use App\Models\Pet;
 
 class ShopController extends Controller
 {
@@ -34,8 +35,9 @@ class ShopController extends Controller
     // 詳細ページ
     public function show($id)
     {
+        $pets = Pet::where('shop_id', $id)->get();
         $shop = Shop::findOrFail($id);
-        return view('shop.show', compact('shop'));
+        return view('shop.show', compact('shop', 'pets'));
     }
 
 }

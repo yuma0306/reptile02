@@ -15,6 +15,15 @@
         </li>
     </ul>
     <hr>
+    <h2>新着入荷</h2>
+    <ul>
+        @foreach ($pets as $pet)
+            <li>
+                <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
+            </li>
+        @endforeach
+    </ul>
+    <hr>
     <h2>ペットを探す</h2>
     <div>
         <a href="/pet">入荷一覧</a>
