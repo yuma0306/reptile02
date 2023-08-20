@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>エキゾサーチ</title>
+    <script src="{{ asset('js/common.js') }}" defer></script>
 </head>
 <body>
     <h1>エキゾサーチ</h1>
@@ -118,14 +119,5 @@
             </form>
         </dd>
     </dl>
-    <script>
-        const selectors = Array.from(document.getElementsByClassName('js-select-redirect'));
-        selectors.forEach(selector => {
-            selector.addEventListener('change', function() {
-                const value = selector.value;
-                value && (window.location.href = value);
-            });
-        });
-    </script>
 </body>
 </html>
