@@ -11,7 +11,10 @@
     <ul>
         @foreach($pets as $pet)
         <li>
-            <a href="/owner/shop/{{ $shop_id }}/pet/{{ $pet->id }}">{{ $pet->title }}</a>
+            <a href="/owner/shop/{{ $shop_id }}/pet/{{ $pet->id }}">
+                <p>{{ $pet->title }}</p>
+                <img src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
+            </a>
         </li>
         @endforeach
     </ul>

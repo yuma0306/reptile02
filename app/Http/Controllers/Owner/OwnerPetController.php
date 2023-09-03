@@ -35,19 +35,9 @@ class OwnerPetController extends Controller
     // ルーティングの定義により、{id} というプレースホルダーが指定されているため、LaravelがURLの中のこの部分を検知し、その値を自動的に関数の引数として渡します。
     public function store(Request $request, $shop_id)
     {
-        $validatedData = $request->validate([
-            'category' => 'nullable|string|max:255',
-            'species' => 'required|string|max:255',
-            'price' => 'nullable|numeric|min:0',
-            'age' => 'nullable|numeric|min:0',
-            'title' => 'required|string|max:255',
-            'text' => 'required|string',
-            'size' => 'nullable|string|max:255',
-            'pet_image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pet_image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pet_image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pet_image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        // dd($request);
+        $validationRules = $this->validateRules();
+        $validatedData = $request->validate($validationRules);
 
         // ログインユーザーに紐づくショップ情報を取得
         $shop = auth()->user()->shops()->findOrFail($shop_id);
@@ -76,19 +66,8 @@ class OwnerPetController extends Controller
     // ペット情報の更新
     public function update(Request $request, $shop_id, $pet_id)
     {
-        $validatedData = $request->validate([
-            'category' => 'nullable|string|max:255',
-            'species' => 'required|string|max:255',
-            'price' => 'nullable|numeric|min:0',
-            'age' => 'nullable|numeric|min:0',
-            'title' => 'required|string|max:255',
-            'text' => 'required|string',
-            'size' => 'nullable|string|max:255',
-            'pet_image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pet_image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pet_image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pet_image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        $validationRules = $this->validateRules();
+        $validatedData = $request->validate($validationRules);
 
         $shop = auth()->user()->shops()->findOrFail($shop_id);
         $pet = $shop->pets()->findOrFail($pet_id);
@@ -128,4 +107,25 @@ class OwnerPetController extends Controller
         return redirect()->route('owner.shop.pet.index', ['id' => $shop->id])->with('success', '生体情報が削除されました');
     }
 
+    public function validateRules()
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'species' => 'required|string|max:255',
+            'sex' => 'nullable|string|max:255',
+            'morph' => 'nullable|string|max:255',
+            'price' => 'nullable|string|max:255',
+            'age' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'size' => 'nullable|string|max:255',
+            'arrival_day' => 'nullable|date',
+            'weight' => 'nullable|string|max:255',
+            'pet_image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pet_image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pet_image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pet_image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'public_flag' => 'required|boolean',
+        ];
+    }
 }

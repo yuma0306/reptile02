@@ -21,7 +21,10 @@
     <ul>
         @foreach($pets as $pet)
             <li>
-                <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
+                <a href="/pet/{{ $pet->id }}">
+                    <p>{{ $pet->title }}</p>
+                    <img src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
+                </a>
             </li>
         @endforeach
     </ul>

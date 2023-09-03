@@ -8,26 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Pet extends Model
 {
     protected $fillable = [
-        'category',
-        'species',
-        'price',
-        'age',
-        'title',
-        'text',
-        'size',
         'pet_image1',
         'pet_image2',
         'pet_image3',
         'pet_image4',
+        'title',
+        'category',
+        'species',
+        'morph',
+        'sex',
+        'age',
+        'size',
+        'weight',
+        'arrival_day',
+        'price',
+        'description',
+        'public_flag',
     ];
 
     public function shop()
     {
         return $this->belongsTo(Shop::class);
     }
-
-    // public function petImages()
-    // {
-    //     return $this->hasMany(PetImage::class);
-    // }
 }
