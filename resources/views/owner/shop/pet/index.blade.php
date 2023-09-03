@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ペット一覧</title>
+    <title>生体一覧</title>
 </head>
 <body>
-    <h1>{{ $shop_name }}のペット情報</h1>
+    <h1>{{ $shop_name }}の生体情報</h1>
     <ul>
         @foreach($pets as $pet)
         <li>

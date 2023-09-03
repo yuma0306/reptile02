@@ -19,7 +19,7 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 // ショップ詳細ページ
 Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
-// ペット情報
+// 生体情報
 Route::get('/pet', [PetController::class, 'index'])->name('pet.index');
 Route::get('/pet/{pet_id}', [PetController::class, 'show'])->name('pet.show');
 
@@ -40,15 +40,15 @@ Route::prefix('owner')->middleware('auth')->group(function () {
     Route::get('/shop/{id}', [OwnerShopController::class, 'edit'])->name('owner.shop.edit');
     Route::put('/shop/{id}', [OwnerShopController::class, 'update'])->name('owner.shop.update');
     Route::delete('/shop/{id}', [OwnerShopController::class, 'destroy'])->name('owner.shop.destroy');
-    // 各ショップのペット投稿index
+    // 各ショップの生体投稿index
     Route::get('/shop/{id}/pet', [OwnerPetController::class, 'index'])->name('owner.shop.pet.index');
-    // 各ショップのペット投稿作成
+    // 各ショップの生体投稿作成
     Route::get('/shop/{id}/pet/create', [OwnerPetController::class, 'create'])->name('owner.shop.pet.create');
     Route::post('/shop/{id}/pet/', [OwnerPetController::class, 'store'])->name('owner.shop.pet.store');
-    // 各ショップのペット投稿編集
+    // 各ショップの生体投稿編集
     Route::get('/shop/{id}/pet/{pet_id}', [OwnerPetController::class, 'edit'])->name('owner.shop.pet.edit');
     Route::put('/shop/{shop_id}/pet/{pet_id}', [OwnerPetController::class, 'update'])->name('owner.shop.pet.update');
-    // 各ショップのペット投稿削除
+    // 各ショップの生体投稿削除
     Route::delete('/shop/{shop_id}/pet/{pet_id}', [OwnerPetController::class, 'destroy'])->name('owner.shop.pet.destroy');
 });
 

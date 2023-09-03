@@ -12,7 +12,7 @@
         @foreach($shops as $shop)
         <li>
             <a href="/owner/shop/{{ $shop->id }}">{{ $shop->name }}</a>
-            <a href="/owner/shop/{{ $shop->id }}/pet/">ペット情報</a>
+            <a href="/owner/shop/{{ $shop->id }}/pet/">生体情報</a>
         </li>
         @endforeach
     </ul>

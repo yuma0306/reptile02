@@ -15,10 +15,19 @@ class Pet extends Model
         'title',
         'text',
         'size',
+        'pet_image1',
+        'pet_image2',
+        'pet_image3',
+        'pet_image4',
     ];
 
     public function shop()
     {
         return $this->belongsTo(Shop::class);
     }
+
+    // public function petImages()
+    // {
+    //     return $this->hasMany(PetImage::class);
+    // }
 }

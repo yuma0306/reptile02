@@ -8,7 +8,7 @@
 </head>
 <body>
     <form>
-        <a href="/pet/?shop={{ $shop->id }}">このショップのペット一覧</a>
+        <a href="/pet/?shop={{ $shop->id }}">このショップの生体一覧</a>
     </form>
     <h1>ショップ詳細</h1>
     <dl>
