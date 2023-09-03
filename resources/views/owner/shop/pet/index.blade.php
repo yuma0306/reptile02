@@ -11,6 +11,7 @@
     <ul>
         @foreach($pets as $pet)
         <li>
+            <a href="/pet/{{ $pet->id }}">公開中ページ</a>
             <a href="/owner/shop/{{ $shop_id }}/pet/{{ $pet->id }}">
                 <p>{{ $pet->title }}</p>
                 <img src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">

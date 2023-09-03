@@ -24,6 +24,7 @@ class Pet extends Model
         'price',
         'description',
         'public_flag',
+        'sales_flag',
     ];
 
     public function shop()

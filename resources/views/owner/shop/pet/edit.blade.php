@@ -151,6 +151,20 @@
         <dl>
             <dt>
                 <span>必須</span>
+                <label for="description">販売状況</label>
+            </dt>
+            <dd>
+                <label>
+                    <input type="radio" name="sales_flag" id="sales_flag" value="0" @if($pet->sales_flag === 0) checked @endif>販売中
+                </label>
+                <label>
+                    <input type="radio" name="sales_flag" value="1" @if($pet->sales_flag === 1) checked @endif>売り切れ
+                </label>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <span>必須</span>
             </dt>
             <dd>
                 <label>

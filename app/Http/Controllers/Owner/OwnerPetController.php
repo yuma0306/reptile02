@@ -125,7 +125,8 @@ class OwnerPetController extends Controller
             'pet_image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'pet_image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'pet_image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'public_flag' => 'required|boolean',
+            'public_flag' => 'nullable|boolean',
+            'sales_flag' => 'nullable|boolean',
         ];
     }
 }
