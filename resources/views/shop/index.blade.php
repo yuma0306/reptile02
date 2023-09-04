@@ -11,7 +11,7 @@
     <ul>
         @foreach($shops as $shop)
             <li>
-                <a href="/shop/{{ $shop->id }}">{{ $shop->name }}</a>
+                <a href="/shop/{{ $shop->id }}">{{ $shop->shop_name }}</a>
             </li>
         @endforeach
     </ul>

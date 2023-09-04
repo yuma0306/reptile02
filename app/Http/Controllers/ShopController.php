@@ -23,7 +23,7 @@ class ShopController extends Controller
 
         if(isset($keyword)) {
             $query = Shop::query();
-            $query->where('name', 'LIKE', "%{$keyword}%");
+            $query->where('shop_name', 'LIKE', "%{$keyword}%");
             $shops = $query->get();
             return view('shop.index', compact('shops', 'keyword'));
         }

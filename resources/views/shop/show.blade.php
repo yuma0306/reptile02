@@ -13,7 +13,7 @@
     <h1>ショップ詳細</h1>
     <dl>
         <dt>ショップ名</dt>
-        <dd>{{ $shop->name }}</dd>
+        <dd>{{ $shop->shop_name }}</dd>
     </dl>
     <dl>
         <dt>営業時間</dt>

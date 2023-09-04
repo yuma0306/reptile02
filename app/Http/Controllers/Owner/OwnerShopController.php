@@ -28,7 +28,7 @@ class OwnerShopController extends Controller
     {
         // dd($request);
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'shop_name' => 'required|string|max:255',
             'business_hours' => 'nullable|string|max:255',
             'regular_holiday' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
