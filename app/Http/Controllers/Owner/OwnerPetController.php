@@ -87,7 +87,6 @@ class OwnerPetController extends Controller
 
         // データの更新
         $pet->update($validatedData);
-
         return redirect()->route('owner.shop.pet.index', ['id' => $shop->id])->with('success', '生体情報が更新されました');
     }
 

@@ -9,7 +9,7 @@
 <body>
     <h1>
         @if(isset($shopModel))
-            「{{$shopModel->name}}」の入荷情報一覧
+            「{{$shopModel->shop_name}}」の入荷情報一覧
         @elseif (isset($category))
             「{{$category}}」の入荷情報一覧
         @elseif(isset($keyword))

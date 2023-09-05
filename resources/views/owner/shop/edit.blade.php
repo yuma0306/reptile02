@@ -14,7 +14,7 @@
         <dl>
             <dt>
                 <span>任意</span>
-                <label for="shop_image1">生体画像</label>
+                <label for="shop_image1">店舗画像</label>
             </dt>
             <dd style="display: flex;">
                 <div>
@@ -46,7 +46,16 @@
         </dl>
         <dl>
             <dt>
-                <span>必須</span>
+                <span>任意</span>
+                <label for="website">公式サイト</label>
+            </dt>
+            <dd>
+                <input type="text" name="website" id="website" value="{{ $shop->website }}">
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <span>任意</span>
                 <label for="business_hours">営業時間</label>
             </dt>
             <dd>
@@ -55,7 +64,7 @@
         </dl>
         <dl>
             <dt>
-                <span>必須</span>
+                <span>任意</span>
                 <label for="regular_holiday">定休日</label>
             </dt>
             <dd>
@@ -104,7 +113,8 @@
                     <option value="新潟県" @if($shop->pref=== '新潟県') selected @endif>新潟県</option>
                     <option value="富山県" @if($shop->pref=== '富山県') selected @endif>富山県</option>
                     <option value="石川県" @if($shop->pref=== '石川県') selected @endif>石川県</option>
-                    <option value="福井県" @if($shop->pref=== '福井県') selected @endif>福井県</option>
+                    <option value="福井県
+                    " @if($shop->pref=== '福井県') selected @endif>福井県</option>
                     <option value="山梨県" @if($shop->pref=== '山梨県') selected @endif>山梨県</option>
                     <option value="長野県" @if($shop->pref=== '長野県') selected @endif>長野県</option>
                     <option value="岐阜県" @if($shop->pref=== '岐阜県') selected @endif>岐阜県</option>

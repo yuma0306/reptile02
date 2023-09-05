@@ -16,15 +16,17 @@
         </li>
     </ul>
     <hr>
+    @isset($pets)
     <h2>新着入荷</h2>
     <ul>
-        @foreach ($pets as $pet)
-            <li>
-                <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
-            </li>
-        @endforeach
+            @foreach ($pets as $pet)
+                <li>
+                    <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
+                </li>
+            @endforeach
     </ul>
     <hr>
+    @endisset
     <h2>生体を探す</h2>
     <div>
         <a href="/pet">入荷一覧</a>

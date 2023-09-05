@@ -37,6 +37,9 @@ class ShopController extends Controller
     {
         $pets = Pet::where('shop_id', $id)->get();
         $shop = Shop::findOrFail($id);
+        // if ($shop && $shop->public_flag === 1) {
+        //     return redirect()->route('home');
+        // }
         return view('shop.show', compact('shop', 'pets'));
     }
 

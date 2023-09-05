@@ -33,7 +33,16 @@
         </dl>
         <dl>
             <dt>
-                <span>必須</span>
+                <span>任意</span>
+                <label for="website">公式サイト</label>
+            </dt>
+            <dd>
+                <input type="text" name="website" id="website">
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <span>任意</span>
                 <label for="business_hours">営業時間</label>
             </dt>
             <dd>
@@ -42,7 +51,7 @@
         </dl>
         <dl>
             <dt>
-                <span>必須</span>
+                <span>任意</span>
                 <label for="regular_holiday">定休日</label>
             </dt>
             <dd>
