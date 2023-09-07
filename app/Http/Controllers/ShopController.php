@@ -23,7 +23,7 @@ class ShopController extends Controller
 
         if(isset($keyword)) {
             $query = Shop::query();
-            $query->where('name', 'LIKE', "%{$keyword}%");
+            $query->where('shop_name', 'LIKE', "%{$keyword}%");
             $shops = $query->get();
             return view('shop.index', compact('shops', 'keyword'));
         }
@@ -37,6 +37,9 @@ class ShopController extends Controller
     {
         $pets = Pet::where('shop_id', $id)->get();
         $shop = Shop::findOrFail($id);
+        if ($shop && $shop->public_flag === 1) {
+            return redirect()->route('shop.index');
+        }
         return view('shop.show', compact('shop', 'pets'));
     }
 

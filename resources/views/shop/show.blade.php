@@ -5,15 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ショップ詳細</title>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener( 'DOMContentLoaded', function() {
+            const splide = new Splide( '.splide', {
+                pagination: true,
+                type: 'fade',
+                type: 'loop',
+            });
+            splide.mount();
+        });
+    </script>
 </head>
 <body>
-    <form>
+    <h1>{{ $shop->shop_name }}</h1>
+    <p>{{ $shop->description }}</p>
+    <div>
         <a href="/pet/?shop={{ $shop->id }}">このショップの生体一覧</a>
-    </form>
-    <h1>ショップ詳細</h1>
+    </div>
+    <section class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <img src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
+                </li>
+                <li class="splide__slide">
+                    <img src="{{ asset('storage/' . $shop->shop_image2) }}" alt="">
+                </li>
+                <li class="splide__slide">
+                    <img src="{{ asset('storage/' . $shop->shop_image3) }}" alt="">
+                </li>
+                <li class="splide__slide">
+                    <img src="{{ asset('storage/' . $shop->shop_image4) }}" alt="">
+                </li>
+            </ul>
+        </div>
+    </section>
     <dl>
-        <dt>ショップ名</dt>
-        <dd>{{ $shop->name }}</dd>
+        <dt>公式サイト</dt>
+        <dd>{{ $shop->website }}</dd>
     </dl>
     <dl>
         <dt>営業時間</dt>
@@ -28,48 +59,28 @@
         <dd>{{ $shop->phone }}</dd>
     </dl>
     <dl>
-        <dt>支払い方法</dt>
-        <dd>{{ $shop->payment_method }}</dd>
-    </dl>
-    <dl>
-        <dt>アクセス</dt>
-        <dd>{{ $shop->access_method }}</dd>
-    </dl>
-    <dl>
-        <dt>郵便番号</dt>
-        <dd>{{ $shop->postal_code }}</dd>
+        <dt>動物取扱責任者</dt>
+        <dd>{{ $shop->animal_handler }}</dd>
     </dl>
     <dl>
         <dt>都道府県</dt>
         <dd>{{ $shop->pref }}</dd>
     </dl>
     <dl>
+        <dt>郵便番号</dt>
+        <dd>{{ $shop->postal_code }}</dd>
+    </dl>
+    <dl>
         <dt>住所</dt>
         <dd>{{ $shop->address }}</dd>
     </dl>
     <dl>
-        <dt>Google Map</dt>
-        <dd>{!! $shop->google_map !!}</dd>
+        <dt>アクセス</dt>
+        <dd>{{ $shop->access_method }}</dd>
     </dl>
     <dl>
-        <dt>SNS</dt>
-        <dd>{{ $shop->sns }}</dd>
-    </dl>
-    <dl>
-        <dt>取扱生体</dt>
-        <dd>{{ $shop->available_pets }}</dd>
-    </dl>
-    <dl>
-        <dt>取扱エサ</dt>
-        <dd>{{ $shop->available_feeds }}</dd>
-    </dl>
-    <dl>
-        <dt>公式サイト</dt>
-        <dd>{{ $shop->website }}</dd>
-    </dl>
-    <dl>
-        <dt>店舗画像</dt>
-        <dd><img src="{{ asset('storage/' . $shop->image) }}" alt="店舗画像"></dd>
+        <dt>マップ</dt>
+        <dd>{!! $shop->map !!}</dd>
     </dl>
 </body>
 </html>

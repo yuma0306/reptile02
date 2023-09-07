@@ -27,30 +27,21 @@ class OwnerShopController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'business_hours' => 'nullable|string|max:255',
-            'regular_holiday' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255',
-            'payment_method' => 'nullable|string|max:255',
-            'access_method' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'postal_code' => 'nullable|string|max:255',
-            'pref' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'google_map' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'sns' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'available_pets' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'available_feeds' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'website' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        // 画像を更新するかチェック
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $path;
-        }
+        $validationRules = $this->validateRules();
+        $validatedData = $request->validate($validationRules);
+
         // ログインユーザーのIDと一緒にデータを保存
-        auth()->user()->shops()->create($validatedData);
+        $shop = auth()->user()->shops()->create($validatedData);
+
+        for ($i = 1; $i <= 4; $i++) {
+            $imageField = "shop_image{$i}";
+            if ($request->hasFile($imageField)) {
+                $imagePath = $request->file($imageField)->store("shop_images/{$shop->id}", 'public');
+                // 保存した画像のパスを対応する shop_image カラムに保存
+                $shop->update([$imageField => $imagePath]);
+            }
+        }
+
         return redirect()->route('owner.shop.index')->with('success', 'ショップ情報が登録されました');
     }
 
@@ -65,39 +56,26 @@ class OwnerShopController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-        // バリデーションの実行
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'business_hours' => 'nullable|string|max:255',
-            'regular_holiday' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255',
-            'payment_method' => 'nullable|string|max:255',
-            'access_method' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'postal_code' => 'nullable|string|max:255',
-            'pref' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'google_map' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'sns' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'available_pets' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'available_feeds' => 'nullable|string|max:65535', // textカラムはmaxが65535
-            'website' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        // dd($validatedData);
+        $validationRules = $this->validateRules();
+        $validatedData = $request->validate($validationRules);
 
         // ログインユーザーに紐づくショップ情報を取得
         $shop = auth()->user()->shops()->findOrFail($id);
         // dd($shop);
 
         // 画像を更新するかチェック
-        if ($request->hasFile('image')) {
-            // 古い画像を削除する
-            if ($shop->image) {
-                Storage::disk('public')->delete($shop->image);
+        for ($i = 1; $i <= 4; $i++) {
+            $imageField = "shop_image{$i}";
+            if ($request->hasFile($imageField)) {
+                // 古い画像を削除する
+                if ($shop->{$imageField}) {
+                    Storage::disk('public')->delete($shop->{$imageField});
+                }
+                $imagePath = $request->file($imageField)->store("shop_images/{$shop->id}", 'public');
+                $validatedData[$imageField] = $imagePath;
             }
-            $path = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $path;
         }
+
         // データの更新
         $shop->update($validatedData);
         return redirect()->route('owner.shop.index')->with('success', 'ショップ情報が更新されました');
@@ -112,5 +90,29 @@ class OwnerShopController extends Controller
         }
         $shop->delete();
         return redirect()->route('owner.shop.index')->with('success', 'ショップが削除されました');
+    }
+
+    public function validateRules()
+    {
+        return [
+            'shop_name' => 'required|string|max:255',
+            'business_hours' => 'nullable|string|max:255',
+            'regular_holiday' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'access_method' => 'nullable|string',
+            'postal_code' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'map' => 'nullable|string',
+            'website' => 'nullable|string|max:255',
+            'pref' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'animal_handler' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'shop_image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'shop_image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'shop_image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'shop_image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'public_flag' => 'nullable|boolean',
+        ];
     }
 }

@@ -18,7 +18,7 @@ class OwnerPetController extends Controller
         // 指定された $shop_id に紐づく生体情報を取得
         $pets = Pet::where('shop_id', $shop_id)->get();
         // ショップの名前を取得
-        $shop_name = Shop::where('id', $shop_id)->value('name');
+        $shop_name = Shop::where('id', $shop_id)->value('shop_name');
         $shop_id = Shop::where('id', $shop_id)->value('id');
         // 生体情報一覧とショップの名前をビューに渡して表示
         return view('owner.shop.pet.index', compact('pets', 'shop_name', 'shop_id'));
@@ -87,7 +87,6 @@ class OwnerPetController extends Controller
 
         // データの更新
         $pet->update($validatedData);
-
         return redirect()->route('owner.shop.pet.index', ['id' => $shop->id])->with('success', '生体情報が更新されました');
     }
 

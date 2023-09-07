@@ -8,21 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     protected $fillable = [
-        'name',
+        'shop_name',
         'business_hours',
         'regular_holiday',
         'phone',
-        'payment_method',
         'access_method',
         'postal_code',
-        'pref',
         'address',
-        'google_map',
-        'sns',
-        'available_pets',
-        'available_feeds',
+        'map',
         'website',
-        'image',
+        'pref',
+        'description',
+        'animal_handler',
+        'shop_image1',
+        'shop_image2',
+        'shop_image3',
+        'shop_image4',
+        'public_flag',
     ];
 
     public function user()

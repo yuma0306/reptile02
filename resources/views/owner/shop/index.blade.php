@@ -11,8 +11,19 @@
     <ul>
         @foreach($shops as $shop)
         <li>
-            <a href="/owner/shop/{{ $shop->id }}">{{ $shop->name }}</a>
-            <a href="/owner/shop/{{ $shop->id }}/pet/">生体情報</a>
+            @if($shop->public_flag === 0)
+                <div>
+                    <a href="/shop/{{ $shop->id }}">公開中ページ</a>
+                </div>
+            @endif
+            <a href="/owner/shop/{{ $shop->id }}">
+                <p>{{ $shop->shop_name }}</p>
+                <img src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
+            </a>
+            <div>
+                <a href="/owner/shop/{{ $shop->id }}/pet">このショップの生体情報一覧</a>
+            </div>
+            <hr>
         </li>
         @endforeach
     </ul>

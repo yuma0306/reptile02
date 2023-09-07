@@ -10,9 +10,14 @@
     <h1>みんなのショップ一覧</h1>
     <ul>
         @foreach($shops as $shop)
-            <li>
-                <a href="/shop/{{ $shop->id }}">{{ $shop->name }}</a>
-            </li>
+            @if($shop->public_flag === 0)
+                <li>
+                    <a href="/shop/{{ $shop->id }}">
+                        <p>{{ $shop->shop_name }}</p>
+                        <img src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
+                    </a>
+                </li>
+            @endif
         @endforeach
     </ul>
 </body>
