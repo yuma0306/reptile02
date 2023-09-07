@@ -19,11 +19,13 @@
     @isset($pets)
     <h2>新着入荷</h2>
     <ul>
-            @foreach ($pets as $pet)
+        @foreach ($pets as $pet)
+            @if($pet->public_flag === 0)
                 <li>
                     <a href="/pet/{{ $pet->id }}">{{ $pet->title }}</a>
                 </li>
-            @endforeach
+            @endif
+        @endforeach
     </ul>
     <hr>
     @endisset

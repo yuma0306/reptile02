@@ -10,7 +10,7 @@
     <h1>みんなのショップ一覧</h1>
     <ul>
         @foreach($shops as $shop)
-            @if($shop->public_flag !== 1)
+            @if($shop->public_flag === 0)
                 <li>
                     <a href="/shop/{{ $shop->id }}">
                         <p>{{ $shop->shop_name }}</p>

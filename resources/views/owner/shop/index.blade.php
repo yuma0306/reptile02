@@ -11,13 +11,15 @@
     <ul>
         @foreach($shops as $shop)
         <li>
+            @if($shop->public_flag === 0)
+                <div>
+                    <a href="/shop/{{ $shop->id }}">公開中ページ</a>
+                </div>
+            @endif
             <a href="/owner/shop/{{ $shop->id }}">
                 <p>{{ $shop->shop_name }}</p>
                 <img src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
             </a>
-            <div>
-                <a href="/shop/{{ $shop->id }}">公開中ページ</a>
-            </div>
             <div>
                 <a href="/owner/shop/{{ $shop->id }}/pet">このショップの生体情報一覧</a>
             </div>

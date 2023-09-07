@@ -20,12 +20,14 @@
     </h1>
     <ul>
         @foreach($pets as $pet)
-            <li>
-                <a href="/pet/{{ $pet->id }}">
-                    <p>{{ $pet->title }}</p>
-                    <img src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
-                </a>
-            </li>
+            @if($pet->public_flag === 0)
+                <li>
+                    <a href="/pet/{{ $pet->id }}">
+                        <p>{{ $pet->title }}</p>
+                        <img src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
+                    </a>
+                </li>
+            @endif
         @endforeach
     </ul>
 </body>

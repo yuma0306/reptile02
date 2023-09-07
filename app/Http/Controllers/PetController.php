@@ -44,6 +44,9 @@ class PetController extends Controller
     public function show($id)
     {
         $pet = Pet::findOrFail($id);
+        if($pet && $pet->public_flag === 1) {
+            return redirect()->route('pet.index');
+        }
         return view('pet.show', compact('pet'));
     }
 
