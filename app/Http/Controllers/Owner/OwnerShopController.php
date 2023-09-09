@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use App\Models\Shop;
 use App\Models\User;
+// use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,9 +30,15 @@ class OwnerShopController extends Controller
         // dd($request);
         $validationRules = $this->validateRules();
         $validatedData = $request->validate($validationRules);
+        // dd($validatedData);
 
         // ログインユーザーのIDと一緒にデータを保存
         $shop = auth()->user()->shops()->create($validatedData);
+
+        // 支払い情報を保存（別テーブルも下記の書き方でOK）
+        // $shop->paymentMethods()->create([
+        //     'payment_method' => $validatedData['payment_method']
+        // ]);
 
         for ($i = 1; $i <= 4; $i++) {
             $imageField = "shop_image{$i}";
@@ -55,7 +62,6 @@ class OwnerShopController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request);
         $validationRules = $this->validateRules();
         $validatedData = $request->validate($validationRules);
 
@@ -113,6 +119,7 @@ class OwnerShopController extends Controller
             'shop_image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'shop_image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'public_flag' => 'nullable|boolean',
+            'payment_method' => 'nullable|string|max:255',
         ];
     }
 }
