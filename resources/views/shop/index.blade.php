@@ -7,7 +7,13 @@
     <title>みんなのショップ一覧</title>
 </head>
 <body>
-    <h1>みんなのショップ一覧</h1>
+    <h1>
+        @if(isset($pref))
+            {{$pref}}のショップ一覧
+        @else
+            ショップ一覧
+        @endif
+    </h1>
     <ul>
         @foreach($shops as $shop)
             @if($shop->public_flag === 0)

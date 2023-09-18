@@ -12,4 +12,9 @@ class HomeController extends Controller
         $pets = Pet::latest()->take(5)->get();
         return view('home', compact('pets'));
     }
+
+    public function test()
+    {
+        return view('test');
+    }
 }
