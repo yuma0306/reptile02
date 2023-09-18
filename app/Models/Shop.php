@@ -36,4 +36,9 @@ class Shop extends Model
     {
         return $this->hasMany(Pet::class);
     }
+
+    // public function paymentMethods()
+    // {
+    //     return $this->hasMany(PaymentMethod::class);
+    // }
 }

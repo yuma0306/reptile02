@@ -1,0 +1,74 @@
+@import url(./destyle.css);
+@import url(./module/header.css);
+:root {
+    /* リキッドの数値（vw） = 現在の画面幅の100%の数値（vw） / カンプの横幅（基準値）* カンプの対象の数値 */
+    /* design */
+    --designWidth: 100vw / 375;
+    /* color */
+    --primary: #18689B;
+    --secondary: #5C9BD2;
+    --tertiary:#D6F4FF;
+    --accent: #E29E21;
+    --white: #fff;
+    --black: #333;
+    --grayLight: #f5f5f5;
+    --grayMedium: #aaa;
+    --grayDeep: #707070;
+}
+
+
+body {
+    color: var(--black);
+}
+
+/* custom pc */
+@media (width >= 769px) {
+    .head1 {
+        position: relative;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        padding: 30px;
+        margin-bottom: 1em;
+        color: var(--primary);
+        &::after {
+            position: absolute;
+            content: '';
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 10px;
+            background: var(--primary);
+        }
+    }
+}
+@media (width <= 768px) {
+
+}
+/*
+h2 {
+font-size: 35px;
+font-weight: bold;
+padding: 20px 30px;
+margin-bottom: 1em;
+color: #ffffff;
+border-radius: 10px;
+background: #18689B;
+}
+h3 {
+font-size: 30px;
+font-weight: bold;
+padding: 10px 30px;
+margin-bottom: 1em;
+border-radius: 5px;
+background: #82C3EC;
+}
+h4 {
+font-size: 25px;
+font-weight: bold;
+padding: 10px 20px;
+margin-bottom: 1em;
+border-radius: 5px;
+background: #E7EFEE;
+} */
