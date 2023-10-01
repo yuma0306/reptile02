@@ -13,7 +13,6 @@ use App\Http\Controllers\Owner\OwnerPetController;
 
 // トップーページ
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 // ショップ一覧ページ
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
