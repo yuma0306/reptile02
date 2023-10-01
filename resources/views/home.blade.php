@@ -208,18 +208,6 @@
             </footer>
         </div>
     </div>
-    <script>
-        const burgerBtn = document.getElementById('js-burger-btn');
-        const burgerMenu = document.getElementById('js-burger-menu');
-        const burgerOpen = document.getElementById('js-burger-open');
-        const burgerClose = document.getElementById('js-burger-close');
-        burgerBtn.addEventListener('click', () => {
-            burgerMenu.classList.toggle('translate-x-full');
-            burgerOpen.classList.toggle('hidden');
-            burgerClose.classList.toggle('hidden');
-            console.log('unko');
-        });
-    </script>
 </body>
 </html>
 
