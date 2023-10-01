@@ -1,5 +1,12 @@
 @media (width >= 769px) {
     .header {
-        display: flex;
+        & .header__inner {
+            display: flex;
+        }
+        /* .header__inner {
+            display: flex;
+            width: var(--inner);
+            margin: 0 auto;
+        } */
     }
 }

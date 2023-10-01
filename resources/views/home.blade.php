@@ -2,258 +2,224 @@
 <html>
 <head>
     <title>エキゾサーチ</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/common.js') }}" defer></script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <h1 class="">タイトル</h1>
     <div class="">
-        <div class="">
-            <header class="">
-                <a href="/" class="">
-                    <svg width="95" height="94" viewBox="0 0 95 94" class="">
-                        <path d="M96 0V47L48 94H0V47L48 0H96Z">
-                    </svg>
-                    レプナビ
-                </a>
-                <div class="">
-                    <a href="/pet" class="">生体</a>
-                    <a href="/shop" class="">ショップ</a>
-                    <a href="/login" class="">ログイン</a>
-                    <a href="/register" class="">登録</a>
-                </div>
-                <button type="button" class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="">
-                        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd">
-                    </svg>
-                    Menu
-                </button>
-            </header>
-            <section class="">
-                <div class="">
-                    <h1 class="">レプナビ</h1>
-                    <p class="">数ある種類やモルフの中から理想の生体を見つけるのは大変です。レプナビなら種名やモルフ名で欲しい生体をすぐに見つけることができます。</p>
-                    <form action="/pet" method="get" class="">
-                        <input type="text" name="keyword" id="keyword" placeholder="ショップ名で検索" class="">
-                        <button type="submit" class="">検索</button>
-                    </form>
-                </div>
-                <div class="">
-                    <img src="{{ asset('img/fv-img02.jpg') }}" alt="" class="">
-                </div>
-            </section>
-        </div>
-    </div>
-    @isset($pets)
-        <div class="">
-            <div class="">
-                <div class="">
-                    <h2 class="">新着入荷</h2>
-                    <a href="/pet" class="">生体一覧</a>
-                </div>
-                <div class="">
-                    @foreach ($pets as $pet)
-                        @if($pet->public_flag === 0)
-                            <div>
-                                <a href="/pet/{{ $pet->id }}" class="">
-                                    <img src="{{ asset('storage/' . $pet->pet_image1) }}" loading="lazy" alt="" class="">
-                                    <span class="">2023-09-02</span>
-                                </a>
-                                <div>
-                                    <div class="">
-                                        <span class="">{{ $pet->title }}</span>
-                                    </div>
-                                    <p class="">{{ $pet->sex }}</p>
-                                </div>
-                            </div>
-                        @endif
-                        @if($loop->iteration == 4)
-                            @break
-                        @endif
-                    @endforeach
-                </div>
+        <x-header></x-header>
+        <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
+            <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row">
+                    <div class="flex flex-col items-center justify-center sm:text-center lg:items-start lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
+                        <h1 class="mb-8 text-4xl font-bold text-black sm:text-5xl md:mb-12 md:text-6xl">レプナビ</h1>
+                        <p class="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg">数ある種類やモルフの中から理想の生体を見つけるのは大変です。レプナビなら種名やモルフ名で欲しい生体をすぐに見つけることができます。</p>
+                        <x-search>種名で検索</x-search>
+                    </div>
+                    <div class="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12">
+                        <img src="{{ asset('img/fv-img02.jpg') }}" alt="" class="h-full w-full object-cover object-center">
+                    </div>
+                </section>
             </div>
         </div>
-    @endisset
-    <div class="">
-        <div class="">
-            <div class="">
-                <h2 class="">カテゴリから探す</h2>
-                <select class="">
-                    <option value="" selected disabled>カテゴリ一覧</option>
-                    <option value="/pet?category=ニシキヘビ">ニシキヘビ</option>
-                    <option value="/pet?category=ナミヘビ">ナミヘビ</option>
-                    <option value="/pet?category=トカゲ">トカゲ</option>
-                    <option value="/pet?category=ヤモリ">ヤモリ</option>
-                    <option value="/pet?category=リクガメ">リクガメ</option>
-                    <option value="/pet?category=ミズガメ">ミズガメ</option>
-                    <option value="/pet?category=カエル">カエル</option>
-                    <option value="/pet?category=有尾類">有尾類</option>
-                    <option value="/pet?category=その他">その他</option>
-                </select>
-            </div>
-            <div class="">
-                <div>
-                    <a href="/pet?category=ニシキヘビ" class="">
-                    <img src="{{ asset('img/img-python.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">python</span>
-                        <span class="">ニシキヘビ</span>
+        @isset($pets)
+            <div class="bg-white py-6 sm:py-8 lg:py-12">
+                <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                    <div class="mb-6 flex items-end justify-between gap-4">
+                        <x-title2>新着入荷</x-title2>
+                        <a href="/pet" class="inline-block rounded-lg border bg-white px-4 py-2 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">生体一覧</a>
                     </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/pet?category=トカゲ" class="">
-                    <img src="{{ asset('img/img-lizard.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">lizard</span>
-                        <span class="">トカゲ</span>
+                    <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
+                        @foreach ($pets as $pet)
+                            @if($pet->public_flag === 0)
+                                <x-card
+                                    :link="'/pet/' . $pet->id"
+                                    :src="$pet->pet_image1"
+                                    :date="$pet->date"
+                                    :title="$pet->title"
+                                    :sex="$pet->sex"
+                                />
+                            @endif
+                            @if($loop->iteration == 4)
+                                @break
+                            @endif
+                        @endforeach
                     </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/pet?category=リクガメ" class="">
-                    <img src="{{ asset('img/img-tortoise.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">tortoise</span>
-                        <span class="">リクガメ</span>
-                    </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/pet?category=カエル" class="">
-                    <img src="{{ asset('img/img-frog.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">frog</span>
-                        <span class="">カエル</span>
-                    </div>
-                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="">
-        <div class="">
-            <div class="">
-                <h2 class="">ショップを探す</h2>
-                <div>
-                    <a href="/shop" class="">ショップ一覧</a>
-                </div>
-            </div>
-            <div class="">
-                <div>
-                    <a href="/shop?pref=東京" class="">
-                    <img src="{{ asset('img/img-tokyo.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">tokyo</span>
-                        <span class="">東京</span>
-                    </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/shop?pref=神奈川" class="">
-                    <img src="{{ asset('img/img-kanagawa.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">kanagawa</span>
-                        <span class="">神奈川</span>
-                    </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/shop?pref=大阪" class="">
-                    <img src="{{ asset('img/img-osaka.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">osaka</span>
-                        <span class="">大阪</span>
-                    </div>
-                    </a>
-                </div>
-                <div>
-                    <a href="/shop?pref=愛知" class="">
-                    <img src="{{ asset('img/img-aichi.jpg') }}" loading="lazy" alt="" class="">
-                    <div class="">
-                        <span class="">aichi</span>
-                        <span class="">愛知</span>
-                    </div>
-                    </a>
-                </div>
-            </div>
-            <div class="">
-                <div>
-                    <select class="">
-                        <option value="" selected disabled>都道府県から探す</option>
-                        <option value="/shop?pref=北海道">北海道</option>
-                        <option value="/shop?pref=青森県">青森県</option>
-                        <option value="/shop?pref=岩手県">岩手県</option>
-                        <option value="/shop?pref=宮城県">宮城県</option>
-                        <option value="/shop?pref=秋田県">秋田県</option>
-                        <option value="/shop?pref=山形県">山形県</option>
-                        <option value="/shop?pref=福島県">福島県</option>
-                        <option value="/shop?pref=茨城県">茨城県</option>
-                        <option value="/shop?pref=栃木県">栃木県</option>
-                        <option value="/shop?pref=群馬県">群馬県</option>
-                        <option value="/shop?pref=埼玉県">埼玉県</option>
-                        <option value="/shop?pref=千葉県">千葉県</option>
-                        <option value="/shop?pref=東京都">東京都</option>
-                        <option value="/shop?pref=神奈川県">神奈川県</option>
-                        <option value="/shop?pref=新潟県">新潟県</option>
-                        <option value="/shop?pref=富山県">富山県</option>
-                        <option value="/shop?pref=石川県">石川県</option>
-                        <option value="/shop?pref=福井県">福井県</option>
-                        <option value="/shop?pref=山梨県">山梨県</option>
-                        <option value="/shop?pref=長野県">長野県</option>
-                        <option value="/shop?pref=岐阜県">岐阜県</option>
-                        <option value="/shop?pref=静岡県">静岡県</option>
-                        <option value="/shop?pref=愛知県">愛知県</option>
-                        <option value="/shop?pref=三重県">三重県</option>
-                        <option value="/shop?pref=滋賀県">滋賀県</option>
-                        <option value="/shop?pref=京都府">京都府</option>
-                        <option value="/shop?pref=大阪府">大阪府</option>
-                        <option value="/shop?pref=兵庫県">兵庫県</option>
-                        <option value="/shop?pref=奈良県">奈良県</option>
-                        <option value="/shop?pref=和歌山県">和歌山県</option>
-                        <option value="/shop?pref=鳥取県">鳥取県</option>
-                        <option value="/shop?pref=島根県">島根県</option>
-                        <option value="/shop?pref=岡山県">岡山県</option>
-                        <option value="/shop?pref=広島県">広島県</option>
-                        <option value="/shop?pref=山口県">山口県</option>
-                        <option value="/shop?pref=徳島県">徳島県</option>
-                        <option value="/shop?pref=香川県">香川県</option>
-                        <option value="/shop?pref=愛媛県">愛媛県</option>
-                        <option value="/shop?pref=高知県">高知県</option>
-                        <option value="/shop?pref=福岡県">福岡県</option>
-                        <option value="/shop?pref=佐賀県">佐賀県</option>
-                        <option value="/shop?pref=長崎県">長崎県</option>
-                        <option value="/shop?pref=熊本県">熊本県</option>
-                        <option value="/shop?pref=大分県">大分県</option>
-                        <option value="/shop?pref=宮崎県">宮崎県</option>
-                        <option value="/shop?pref=鹿児島県">鹿児島県</option>
-                        <option value="/shop?pref=沖縄県">沖縄県</option>
+        @endisset
+        <div class="bg-white py-6 sm:py-8 lg:py-12">
+            <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                <div class="mb-6 flex items-end justify-between gap-4">
+                    <x-title2>カテゴリから探す</x-title2>
+                    <select class="js-select-redirect inline-block rounded-lg border bg-white px-4 py-2 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">
+                        <option value="" selected disabled>カテゴリ一覧</option>
+                        <option value="/pet?category=ニシキヘビ">ニシキヘビ</option>
+                        <option value="/pet?category=ナミヘビ">ナミヘビ</option>
+                        <option value="/pet?category=トカゲ">トカゲ</option>
+                        <option value="/pet?category=ヤモリ">ヤモリ</option>
+                        <option value="/pet?category=リクガメ">リクガメ</option>
+                        <option value="/pet?category=ミズガメ">ミズガメ</option>
+                        <option value="/pet?category=カエル">カエル</option>
+                        <option value="/pet?category=有尾類">有尾類</option>
+                        <option value="/pet?category=その他">その他</option>
                     </select>
                 </div>
-                <div>
-                    <form action="/shop" method="get" class="">
-                        <input type="text" name="keyword" id="keyword" placeholder="ショップ名で検索" class="">
-                        <button type="submit" class="">検索</button>
-                    </form>
+                <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
+                    <x-card2
+                        :link="'/pet?category=ニシキヘビ'"
+                        :src="'img/img-python.jpg'"
+                        :alt="'ニシキヘビ'"
+                        :text="'python'"
+                        :title="'ニシキヘビ'"
+                    />
+                    <x-card2
+                        :link="'/pet?category=トカゲ'"
+                        :src="'img/img-lizard.jpg'"
+                        :alt="'トカゲ'"
+                        :text="'lizard'"
+                        :title="'トカゲ'"
+                    />
+                    <x-card2
+                        :link="'/pet?category=リクガメ'"
+                        :src="'img/img-tortoise.jpg'"
+                        :alt="'リクガメ'"
+                        :text="'tortoise'"
+                        :title="'リクガメ'"
+                    />
+                    <x-card2
+                        :link="'/pet?category=カエル'"
+                        :src="'img/img-frog.jpg'"
+                        :alt="'カエル'"
+                        :text="'frog'"
+                        :title="'カエル'"
+                    />
                 </div>
             </div>
         </div>
-    </div>
-    <div class="">
-        <footer class="">
-            <div class="">
-                <nav class="">
-                    <a href="/pet" class="">生体</a>
-                    <a href="/shop" class="">ショップ</a>
-                    <a href="/login" class="">ログイン</a>
-                    <a href="/register" class="">登録</a>
-                </nav>
+        <div class="bg-white py-6 sm:py-8 lg:py-12">
+            <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                <div class="mb-6 flex items-end justify-between gap-4">
+                    <x-title2>ショップを探す</x-title2>
+                    <div>
+                        <a href="/shop" class="inline-block rounded-lg border bg-white px-4 py-2 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">ショップ一覧</a>
+                    </div>
+                </div>
+                <div class="mb-8 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
+                    <x-card2
+                        :link="'/pet?category=東京'"
+                        :src="'img/img-tokyo.jpg'"
+                        :alt="'東京'"
+                        :text="'tokyo'"
+                        :title="'東京'"
+                    />
+                    <x-card2
+                        :link="'/pet?category=神奈川'"
+                        :src="'img/img-kanagawa.jpg'"
+                        :alt="'神奈川'"
+                        :text="'kanagawa'"
+                        :title="'神奈川'"
+                    />
+                    <x-card2
+                        :link="'/pet?category=大阪'"
+                        :src="'img/img-osaka.jpg'"
+                        :alt="'大阪'"
+                        :text="'osaka'"
+                        :title="'大阪'"
+                    />
+                    <x-card2
+                        :link="'/pet?category=愛知'"
+                        :src="'img/img-aichi.jpg'"
+                        :alt="'愛知'"
+                        :text="'aichi'"
+                        :title="'愛知'"
+                    />
+                </div>
+                <div class="flex justify-center w-full gap-20">
+                    <div>
+                        <select class="js-select-redirect inline-block rounded-lg border bg-white px-4 py-2 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">
+                            <option value="" selected disabled>都道府県から探す</option>
+                            <option value="/shop?pref=北海道">北海道</option>
+                            <option value="/shop?pref=青森県">青森県</option>
+                            <option value="/shop?pref=岩手県">岩手県</option>
+                            <option value="/shop?pref=宮城県">宮城県</option>
+                            <option value="/shop?pref=秋田県">秋田県</option>
+                            <option value="/shop?pref=山形県">山形県</option>
+                            <option value="/shop?pref=福島県">福島県</option>
+                            <option value="/shop?pref=茨城県">茨城県</option>
+                            <option value="/shop?pref=栃木県">栃木県</option>
+                            <option value="/shop?pref=群馬県">群馬県</option>
+                            <option value="/shop?pref=埼玉県">埼玉県</option>
+                            <option value="/shop?pref=千葉県">千葉県</option>
+                            <option value="/shop?pref=東京都">東京都</option>
+                            <option value="/shop?pref=神奈川県">神奈川県</option>
+                            <option value="/shop?pref=新潟県">新潟県</option>
+                            <option value="/shop?pref=富山県">富山県</option>
+                            <option value="/shop?pref=石川県">石川県</option>
+                            <option value="/shop?pref=福井県">福井県</option>
+                            <option value="/shop?pref=山梨県">山梨県</option>
+                            <option value="/shop?pref=長野県">長野県</option>
+                            <option value="/shop?pref=岐阜県">岐阜県</option>
+                            <option value="/shop?pref=静岡県">静岡県</option>
+                            <option value="/shop?pref=愛知県">愛知県</option>
+                            <option value="/shop?pref=三重県">三重県</option>
+                            <option value="/shop?pref=滋賀県">滋賀県</option>
+                            <option value="/shop?pref=京都府">京都府</option>
+                            <option value="/shop?pref=大阪府">大阪府</option>
+                            <option value="/shop?pref=兵庫県">兵庫県</option>
+                            <option value="/shop?pref=奈良県">奈良県</option>
+                            <option value="/shop?pref=和歌山県">和歌山県</option>
+                            <option value="/shop?pref=鳥取県">鳥取県</option>
+                            <option value="/shop?pref=島根県">島根県</option>
+                            <option value="/shop?pref=岡山県">岡山県</option>
+                            <option value="/shop?pref=広島県">広島県</option>
+                            <option value="/shop?pref=山口県">山口県</option>
+                            <option value="/shop?pref=徳島県">徳島県</option>
+                            <option value="/shop?pref=香川県">香川県</option>
+                            <option value="/shop?pref=愛媛県">愛媛県</option>
+                            <option value="/shop?pref=高知県">高知県</option>
+                            <option value="/shop?pref=福岡県">福岡県</option>
+                            <option value="/shop?pref=佐賀県">佐賀県</option>
+                            <option value="/shop?pref=長崎県">長崎県</option>
+                            <option value="/shop?pref=熊本県">熊本県</option>
+                            <option value="/shop?pref=大分県">大分県</option>
+                            <option value="/shop?pref=宮崎県">宮崎県</option>
+                            <option value="/shop?pref=鹿児島県">鹿児島県</option>
+                            <option value="/shop?pref=沖縄県">沖縄県</option>
+                        </select>
+                    </div>
+                    <div>
+                        <x-search>ショップ名で検索</x-search>
+                    </div>
+                </div>
             </div>
-            <div class="">© 2023 - レプナビ All rights reserved</div>
-        </footer>
+        </div>
+        <div class="bg-white pt-4 sm:pt-10 lg:pt-12">
+            <footer class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                <div class="flex flex-col items-center border-t pt-6">
+                    <nav class="mb-4 flex flex-wrap justify-center gap-x-4 gap-y-2 md:justify-start md:gap-6">
+                        <a href="/pet" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">生体</a>
+                        <a href="/shop" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ショップ</a>
+                        <a href="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ログイン</a>
+                        <a href="/register" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">登録</a>
+                    </nav>
+                </div>
+                <div class="py-8 text-center text-sm text-gray-400">© 2023 - レプナビ All rights reserved</div>
+            </footer>
+        </div>
     </div>
+    <script>
+        const burgerBtn = document.getElementById('js-burger-btn');
+        const burgerMenu = document.getElementById('js-burger-menu');
+        const burgerOpen = document.getElementById('js-burger-open');
+        const burgerClose = document.getElementById('js-burger-close');
+        burgerBtn.addEventListener('click', () => {
+            burgerMenu.classList.toggle('translate-x-full');
+            burgerOpen.classList.toggle('hidden');
+            burgerClose.classList.toggle('hidden');
+            console.log('unko');
+        });
+    </script>
 </body>
 </html>
 
