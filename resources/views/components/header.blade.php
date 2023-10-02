@@ -10,7 +10,7 @@
         </div>
     </div>
     <nav>
-        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-teal-50 transition-all ease-linear translate-x-full text-center">
+        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-gray-100 transition-all ease-linear translate-x-full text-center">
             <li>
                 <a href="" class="text-slate-700 transition hover:text-teal-600 font-semibold">生体</a>
             </li>
