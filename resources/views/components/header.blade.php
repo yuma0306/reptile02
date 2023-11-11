@@ -1,24 +1,24 @@
 <header>
-    <div class="relative flex items-center justify-between aligin-center container m-auto py-4 px-4 md:px-0">
-        <a href="/" class="font-bold text-slate-700 text-2xl md:text-3xl transition hover:text-teal-600">
+    <div class="relative flex items-center justify-between aligin-center container m-auto py-4 px-4">
+        <a href="/" class="font-bold text-slate-700 text-2xl md:text-3xl duration-200 hover:text-teal-600">
             レプナビ
         </a>
         <div class="hidden lg:flex items-center gap-5">
-            <a href="/pet" class="text-sm md:text-base font-semibold text-slate-700 transition hover:text-teal-600">生体</a>
-            <a href="/shop" class="text-sm md:text-base font-semibold text-slate-700 transition hover:text-teal-600">ショップ</a>
-            <a href="/register" class="text-sm md:text-base font-semibold text-slate-700 transition hover:text-teal-600">ショップオーナーの方</a>
+            <a href="/pet" class="text-sm md:text-base font-semibold text-slate-700 duration-200 hover:text-teal-600">生体</a>
+            <a href="/shop" class="text-sm md:text-base font-semibold text-slate-700 duration-200 hover:text-teal-600">ショップ</a>
+            <a href="/register" class="text-sm md:text-base font-semibold text-slate-700 duration-200 hover:text-teal-600">ショップオーナーの方</a>
         </div>
     </div>
     <nav>
-        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-gray-100 transition-all ease-linear translate-x-full text-center">
+        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-gray-100 duration-200-all ease-linear translate-x-full text-center">
             <li>
-                <a href="" class="text-slate-700 transition hover:text-teal-600 font-semibold">生体</a>
+                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">生体</a>
             </li>
             <li class="mt-4">
-                <a href="" class="text-slate-700 transition hover:text-teal-600 font-semibold">ショップ</a>
+                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">ショップ</a>
             </li>
             <li class="mt-4">
-                <a href="" class="text-slate-700 transition hover:text-teal-600 font-semibold">ショップオーナーの方</a>
+                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">ショップオーナーの方</a>
             </li>
         </ul>
         <button type="button" class="lg:hidden fixed top-0 right-0 z-20 p-3 bg-teal-600 text-white" id="js-burger-btn">

@@ -6,10 +6,11 @@
     'title',
 ])
 
-<a href="{{ $link }}" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-    <img src="{{ asset($src) }}" loading="lazy" alt="{{ $alt }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110">
-    <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-        <span class="text-gray-500">{{ $text }}</span>
-        <span class="text-lg font-bold text-gray-800 lg:text-xl">{{ $title }}</span>
+<a href="{{ $link }}" class="relative aspect-square rounded overflow-hidden duration-200 hover:opacity-80" style="background: url({{ asset($src) }}) no-repeat center / cover">
+    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-20 grid place-items-end">
+        <div class="w-full text-center text-white py-4">
+            <p class="mb-1 text-center">{{ $text }}</p>
+            <p class="text-lg font-bold">{{ $title }}</p>
+        </div>
     </div>
 </a>
