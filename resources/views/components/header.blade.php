@@ -1,5 +1,5 @@
-<header>
-    <div class="relative flex items-center justify-between aligin-center container m-auto py-4 px-4">
+<header class="">
+    <div class="relative flex items-center justify-between aligin-center container m-auto pt-4 px-4">
         <a href="/" class="font-bold text-slate-700 text-2xl md:text-3xl duration-200 hover:text-teal-600">
             レプナビ
         </a>

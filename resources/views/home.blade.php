@@ -28,7 +28,7 @@
         @isset($pets)
             <section class="container m-auto py-8 px-4">
                 <x-title2>新着入荷</x-title2>
-                <div class="flex overflow-x-auto gap-5 mb-5 pb-5 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div class="flex overflow-x-auto gap-5 mb-5 pb-5">
                     @foreach ($pets as $pet)
                         @if($pet->public_flag === 0)
                             <x-card
@@ -179,7 +179,7 @@
                 />
             </div>
             <div class="flex justify-center flex-wrap gap-5">
-                <select class="block w-3/5 max-w-xs text-teal-600 bg-white font-bold border-b-2 border-green-800 border-solid text-center p-3 rounded duration-200 hover:opacity-80 cursor-pointer">
+                <select class="js-select-redirect block w-3/5 max-w-xs text-teal-600 bg-white font-bold border-b-2 border-green-800 border-solid text-center p-3 rounded duration-200 hover:opacity-80 cursor-pointer">
                     <option value="" selected disabled>都道府県から探す</option>
                     <option value="/shop?pref=北海道">北海道</option>
                     <option value="/shop?pref=青森県">青森県</option>
