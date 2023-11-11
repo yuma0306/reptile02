@@ -15,7 +15,9 @@
         <section class="lg:flex lg:items-center lg:justify-between lg:gap-10 container m-auto py-8 px-4">
             <div>
                 <h1 class="mb-8 sm:mb-10 text-slate-700 font-bold text-4xl sm:text-5xl md:text-6xl">レプナビ</h1>
-                <p class="mb-5 text-slate-700 text-sm md:text-base lg:text-xl">数ある種類やモルフの中から理想の生体を見つけるのは大変です。レプナビなら種名やモルフ名で欲しい生体をすぐに見つけることができます。</p>
+                <p class="mb-5 text-slate-700 text-sm md:text-base lg:text-xl">
+                    数ある種類やモルフの中から理想の生体を見つけるのは大変です。レプナビなら種名やモルフ名で欲しい生体をすぐに見つけることができます。
+                </p>
                 <x-search
                     :action="'/pet/'"
                     :placeholder="'種名で検索'"
@@ -27,7 +29,7 @@
         </section>
         @isset($pets)
             <section class="container m-auto py-8 px-4">
-                <x-title2>新着入荷</x-title2>
+                <x-heading-lv2>新着入荷</x-heading-lv2>
                 <div class="flex overflow-x-auto gap-5 mb-5 pb-5">
                     @foreach ($pets as $pet)
                         @if($pet->public_flag === 0)
@@ -53,7 +55,7 @@
             </section>
         @endisset
         <section class="container m-auto py-8 px-4">
-            <x-title2>カテゴリから探す</x-title2>
+            <x-heading-lv2>カテゴリから探す</x-heading-lv2>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 mb-10">
                 <x-card2
                     :link="'/pet?category=ニシキヘビ'"
@@ -127,7 +129,7 @@
             </div>
         </section>
         <section class="container m-auto py-8 px-4">
-            <x-title2>ショップを探す</x-title2>
+            <x-heading-lv2>ショップを探す</x-heading-lv2>
             <div class="mb-5">
                 <x-search
                     :action="'/shop/'"
@@ -179,7 +181,7 @@
                 />
             </div>
             <div class="flex justify-center flex-wrap gap-5">
-                <select class="js-select-redirect block w-3/5 max-w-xs text-teal-600 bg-white font-bold border-b-2 border-green-800 border-solid text-center p-3 rounded duration-200 hover:opacity-80 cursor-pointer">
+                <x-btn-select>
                     <option value="" selected disabled>都道府県から探す</option>
                     <option value="/shop?pref=北海道">北海道</option>
                     <option value="/shop?pref=青森県">青森県</option>
@@ -228,30 +230,14 @@
                     <option value="/shop?pref=宮崎県">宮崎県</option>
                     <option value="/shop?pref=鹿児島県">鹿児島県</option>
                     <option value="/shop?pref=沖縄県">沖縄県</option>
-                </select>
+                </x-btn-select>
                 <x-btn01
                     :link="'/shop/'"
                     :text="'ショップ一覧'"
                 />
             </div>
         </section>
-        <footer class="container m-auto py-8 px-4">
-            <ul class="flex justify-center gap-5 border-t mb-6 pt-6">
-                <li>
-                    <a href="/pet" class="text-gray-500 duration-200 hover:text-teal-600">生体</a>
-                </li>
-                <li>
-                    <a href="/shop" class="text-gray-500 duration-200 hover:text-teal-600">ショップ</a>
-                </li>
-                <li>
-                    <a href="/login" class="text-gray-500 duration-200 hover:text-teal-600">ログイン</a>
-                </li>
-                <li>
-                    <a href="/register" class="text-gray-500 duration-200 hover:text-teal-600">登録</a>
-                </li>
-            </ul>
-            <p class="text-center text-sm text-gray-500">© 2023 - レプナビ All rights reserved</p>
-        </footer>
+        <x-footer></x-footer>
     </div>
 </body>
 </html>
