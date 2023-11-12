@@ -1,5 +1,5 @@
-<footer class="container m-auto py-8 px-4">
-    <ul class="flex justify-center gap-5 border-t mb-6 pt-6">
+<footer class="container m-auto py-10 px-4">
+    <ul class="flex justify-center gap-5 border-t-2 mb-6 pt-6">
         <li>
             <a href="/pet" class="text-gray-500 duration-200 hover:text-teal-600">生体</a>
         </li>

@@ -1,5 +1,5 @@
 <header>
-    <div class="relative flex items-center justify-between aligin-center container m-auto pt-4 px-4">
+    <div class="relative flex items-center justify-between aligin-center container m-auto py-4 px-4">
         <a href="/" class="font-bold text-slate-700 text-2xl md:text-3xl duration-200 hover:text-teal-600">
             レプナビ
         </a>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <nav>
-        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-gray-100 duration-200-all ease-linear translate-x-full text-center">
+        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-gray-100 duration-200-all ease-linear translate-x-full text-center transition">
             <li>
                 <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">生体</a>
             </li>
