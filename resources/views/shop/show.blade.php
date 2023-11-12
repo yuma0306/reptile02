@@ -19,6 +19,12 @@
     </script>
 </head>
 <body>
+    <div>
+        <x-header></x-header>
+        <main>
+
+        </main>
+    </div>
     <h1>{{ $shop->shop_name }}</h1>
     <p>{{ $shop->description }}</p>
     <div>
