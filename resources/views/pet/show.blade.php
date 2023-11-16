@@ -13,13 +13,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
         document.addEventListener( 'DOMContentLoaded', function() {
-            const splide = new Splide( '.splide', {
+            const main = new Splide( '#js-main-splide', {
                 pagination: false,
-                type: 'fade',
                 type: 'loop',
                 drag: true,
+                pagination: false,
             });
-            splide.mount();
+            const thumbnails = new Splide( '#js-pager-splide', {
+                rewind      : true,
+                pagination  : false,
+                cover       : true,
+                isNavigation: true,
+                arrows    : false,
+            });
+            main.sync( thumbnails );
+            main.mount();
+            thumbnails.mount();
         });
     </script>
 </head>
@@ -30,59 +39,84 @@
             <x-heading-lv1>{{ $pet->title }}</x-heading-lv1>
             <section class="container m-auto py-10 px-4">
                 @if($pet->pet_image1 || $pet->pet_image2 || $pet->pet_image3 ||  $pet->pet_image4)
-                    <section class="splide relative m-auto max-w-2xl w-full aspect-video mb-10">
+                    <div class="splide relative m-auto mb-2 max-w-2xl w-full aspect-video" id="js-main-splide">
                         <div class="splide__track h-full">
                             <ul class="splide__list">
                                 @if($pet->pet_image1)
                                     <li class="splide__slide">
-                                        <img class="w-full h-full object-cover rounded" src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
                                     </li>
                                 @endif
                                 @if($pet->pet_image2)
                                     <li class="splide__slide">
-                                        <img class="w-full h-full object-cover rounded"  src="{{ asset('storage/' . $pet->pet_image2) }}" alt="">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image2) }}" alt="">
                                     </li>
                                 @endif
                                 @if($pet->pet_image3)
                                     <li class="splide__slide">
-                                        <img class="w-full h-full object-cover rounded"  src="{{ asset('storage/' . $pet->pet_image3) }}" alt="">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image3) }}" alt="">
                                     </li>
                                 @endif
                                 @if($pet->pet_image4)
                                     <li class="splide__slide">
-                                        <img class="w-full h-full object-cover rounded"  src="{{ asset('storage/' . $pet->pet_image4) }}" alt="">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image4) }}" alt="">
                                     </li>
                                 @endif
                             </ul>
                         </div>
-                        <div class="splide__arrows flex justify-between absolute top-1/2 left-0 translate-y-[-50%] w-full h-fit">
-                            <button class="splide__arrow splide__arrow--prev translate-x-[-16px]">
-                                <svg class="h-10 w-10 text-teal-600 bg-white rounded-[50%]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <polyline points="12 8 8 12 12 16" />
-                                    <line x1="16" y1="12" x2="8" y2="12" />
-                                </svg>
-                            </button>
-                            <button class="splide__arrow splide__arrow--next translate-x-[16px]">
-                                <svg class="h-10 w-10 text-teal-600 bg-white rounded-[50%]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <polyline points="12 16 16 12 12 8" />
-                                    <line x1="8" y1="12" x2="16" y2="12" />
-                                </svg>
-                            </button>
-                        </div>
+                        <x-btn-slider></x-btn-slider>
                         @if($pet->sex === 'オス')
                             <span class="absolute top-0 left-0 py-2 px-3 bg-indigo-300 text-white font-bold rounded-br-lg">{{$pet->sex}}</span>
                         @elseif($pet->sex === 'メス')
                             <span class="absolute top-0 left-0 py-2 px-3 bg-red-300 text-white font-bold rounded-br-lg">{{$pet->sex}}</span>
+                        @elseif($pet->sex === '不明')
+                            <span class="absolute top-0 left-0 py-2 px-3 bg-gray-400 text-white font-bold rounded-br-lg">{{$pet->sex}}</span>
                         @endif
-                    </section>
+                    </div>
+                    <div class="splide relative m-auto max-w-2xl w-full aspect-video h-[15vw] max-h-[100px]" id="js-pager-splide">
+                        <div class="splide__track h-full mr-[-8px]">
+                            <ul class="splide__list gap-2">
+                                @if($pet->pet_image1)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image1) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($pet->pet_image2)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image2) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($pet->pet_image3)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image3) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($pet->pet_image4)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $pet->pet_image4) }}" alt="">
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
                 @endif
+            </section>
+            <section class="container m-auto py-10 px-4">
+                <x-heading-lv2>ショップからのコメント</x-heading-lv2>
+                <p class="mb-10">{{ $pet->description }}</p>
+                <div class="flex justify-center items-center">
+                    <x-btn01
+                        link="/shop/{{ $pet->shop_id }}"
+                        text="ショップページへ"
+                    />
+                </div>
+            </section>
+            <section class="container m-auto py-10 px-4">
+                <x-heading-lv2>生体詳細</x-heading-lv2>
                 <div class="grid gap-5 mb-10">
                     <x-list01
                         term="販売状況"
                         :desc="$salesText"
-                        emphasis=true
                     />
                     <x-list01
                         term="カテゴリー"
@@ -120,12 +154,8 @@
                         term="入荷日"
                         :desc="$pet->arrival_day"
                     />
-                    <x-list01
-                        term="コメント"
-                        :desc="$pet->description"
-                    />
                 </div>
-                <div class="grid place-content-center">
+                <div class="flex justify-center items-center">
                     <x-btn01
                         link="/shop/{{ $pet->shop_id }}"
                         text="ショップページへ"
