@@ -69,17 +69,23 @@
                         :placeholder="'ショップ名で検索'"
                     />
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                @if($shops->isEmpty())
+                    @if(isset($pref))
+                    <p>{{$pref}}のショップはまだありません</p>
+                    @endif
+                @else
                     @foreach($shops as $shop)
-                        @if($shop->public_flag === 0)
-                            <x-card04
-                                :link="'/shop/' . $shop->id"
-                                :src="$shop->shop_image1"
-                                :title="$shop->shop_name"
-                            />
-                        @endif
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                            @if($shop->public_flag === 0)
+                                <x-card04
+                                    :link="'/shop/' . $shop->id"
+                                    :src="$shop->shop_image1"
+                                    :title="$shop->shop_name"
+                                />
+                            @endif
+                        </div>
                     @endforeach
-                </div>
+                @endif
             </section>
         </main>
     </div>
