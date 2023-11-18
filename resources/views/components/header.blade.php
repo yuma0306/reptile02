@@ -10,12 +10,12 @@
         </div>
     </div>
     <nav>
-        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-gray-100 duration-200-all ease-linear translate-x-full text-center transition">
+        <ul id="js-burger-menu" class="fixed top-0 left-0 z-10 w-full py-10 bg-white shadow-lg duration-100 ease-linear translate-x-full text-center transition">
             <li>
-                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">生体</a>
+                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">生体一覧</a>
             </li>
             <li class="mt-4">
-                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">ショップ</a>
+                <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">ショップ一覧</a>
             </li>
             <li class="mt-4">
                 <a href="" class="text-slate-700 duration-200 hover:text-teal-600 font-semibold">ショップオーナーの方</a>
