@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::table('shops', function (Blueprint $table) {
@@ -19,24 +22,37 @@ return new class extends Migration
             $table->dropColumn('available_feeds');
 
             // 作成
-            if (!Schema::hasColumn('shops', 'description')) {
-                $table->text('description')->nullable();
-            }
-            if (!Schema::hasColumn('shops', 'animal_handler')) {
-                $table->string('animal_handler')->nullable();
-            }
-            if (!Schema::hasColumn('shops', 'shop_image1')) {
-                $table->string('shop_image1')->nullable();
-            }
-            if (!Schema::hasColumn('shops', 'shop_image2')) {
-                $table->string('shop_image2')->nullable();
-            }
-            if (!Schema::hasColumn('shops', 'shop_image3')) {
-                $table->string('shop_image3')->nullable();
-            }
-            if (!Schema::hasColumn('shops', 'shop_image4')) {
-                $table->string('shop_image4')->nullable();
-            }
+            $table->text('description')->nullable();
+            $table->string('animal_handler')->nullable();
+            $table->string('shop_image1')->nullable();
+            $table->string('shop_image2')->nullable();
+            $table->string('shop_image3')->nullable();
+            $table->string('shop_image4')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('shops', function (Blueprint $table) {
+            // リネームを元に戻す
+            $table->renameColumn('shop_name', 'name');
+            $table->renameColumn('map', 'google_map');
+
+            // 削除したカラムを再作成する
+            $table->string('payment_method');
+            $table->string('available_pets');
+            $table->string('available_feeds');
+
+            // 作成したカラムを削除する
+            $table->dropColumn('description');
+            $table->dropColumn('animal_handler');
+            $table->dropColumn('shop_image1');
+            $table->dropColumn('shop_image2');
+            $table->dropColumn('shop_image3');
+            $table->dropColumn('shop_image4');
         });
     }
 };
