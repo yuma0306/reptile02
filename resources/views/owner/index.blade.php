@@ -4,14 +4,14 @@
             {{ Auth::user()->name }}さんの管理画面
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <ul class="p-6 text-gray-900">
-                    <li><a href="/owner/shop/">ショップ一覧</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="container m-auto py-10 px-4">
+        <ul class="text-slate-700 font-semibold grid gap-5">
+            <li class="bg-white rounded">
+                <a href="/owner/shop" class="block w-full p-5 duration-200 hover:opacity-80">ショップ一覧</a>
+            </li>
+            <li class="bg-white rounded">
+                <a href="/owner/profile" class="block w-full p-5 duration-200 hover:opacity-80">アカウント設定</a>
+            </li>
+        </ul>
     </div>
 </x-app-layout>

@@ -35,19 +35,23 @@
                         :placeholder="'種名で検索'"
                     />
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                    @foreach($pets as $pet)
-                        @if($pet->public_flag === 0)
-                            <x-card01
-                                :link="'/pet/' . $pet->id"
-                                :src="$pet->pet_image1"
-                                :date="$pet->arrival_day"
-                                :title="$pet->title"
-                                :sex="$pet->sex"
-                            />
-                        @endif
-                    @endforeach
-                </div>
+                @if($pets->isEmpty())
+                    <p>投稿はまだありません</p>
+                @else
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        @foreach($pets as $pet)
+                            @if($pet->public_flag === 0)
+                                <x-card01
+                                    :link="'/pet/' . $pet->id"
+                                    :src="$pet->pet_image1"
+                                    :date="$pet->arrival_day"
+                                    :title="$pet->title"
+                                    :sex="$pet->sex"
+                                />
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
             </section>
         </main>
         <x-footer></x-footer>
