@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('shops', function (Blueprint $table) {
@@ -31,9 +28,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('shops', function (Blueprint $table) {
@@ -42,9 +36,9 @@ return new class extends Migration
             $table->renameColumn('map', 'google_map');
 
             // 削除したカラムを再作成する
-            $table->string('payment_method');
-            $table->string('available_pets');
-            $table->string('available_feeds');
+            $table->string('payment_method')->nullable();
+            $table->string('available_pets')->nullable();
+            $table->string('available_feeds')->nullable();
 
             // 作成したカラムを削除する
             $table->dropColumn('description');
@@ -55,4 +49,5 @@ return new class extends Migration
             $table->dropColumn('shop_image4');
         });
     }
+
 };
