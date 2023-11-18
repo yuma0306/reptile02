@@ -12,18 +12,31 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pets', function (Blueprint $table) {
-            // カラムの変更
+            // カラムの型を変更
             $table->string('age')->nullable()->change();
             $table->string('price')->nullable()->change();
             $table->string('size')->nullable()->change();
+        });
 
+        Schema::table('pets', function (Blueprint $table) {
             // 新しいカラムの追加
             $table->string('morph')->nullable()->after('species');
-            $table->string('sex')->nullable()->after('species');
-            $table->string('weight')->nullable()->after('size');
-            $table->date('arrival_day')->nullable()->after('size');
+        });
 
-            // 名前変更（正しい形に修正）
+        Schema::table('pets', function (Blueprint $table) {
+            $table->string('sex')->nullable()->after('species');
+        });
+
+        Schema::table('pets', function (Blueprint $table) {
+            $table->string('weight')->nullable()->after('size');
+        });
+
+        Schema::table('pets', function (Blueprint $table) {
+            $table->date('arrival_day')->nullable()->after('size');
+        });
+
+        // 名前変更
+        Schema::table('pets', function (Blueprint $table) {
             $table->renameColumn('text', 'description');
         });
     }
@@ -50,3 +63,4 @@ return new class extends Migration
         });
     }
 };
+
