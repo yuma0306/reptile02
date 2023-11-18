@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('pets', function (Blueprint $table) {
@@ -34,18 +31,17 @@ return new class extends Migration
             }
 
             // 名前変更
-            $table->renameColumn('text', 'description');
+            $table->string('description')->nullable()->after('size');
+            $table->dropColumn('text'); // 古いカラムを削除
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
         Schema::table('pets', function (Blueprint $table) {
             // 名前変更を元に戻す
-            $table->renameColumn('description', 'text');
+            $table->string('text')->nullable()->after('size');
+            $table->dropColumn('description'); // 新しいカラムを削除
 
             // 新しいカラムを削除
             if (Schema::hasColumn('pets', 'morph')) {
