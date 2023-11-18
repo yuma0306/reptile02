@@ -12,5 +12,5 @@
         <p class="mb-2 text-gray-500">{{ $date }}</p>
         <p class="overflow-y-hidden text-base font-bold text-slate-700">{{ $title }}</p>
     </div>
-    <p class="absolute top-0 left-0 p-2 text-white font-bold rounded-br-lg {{ $sex === 'オス' ? 'bg-indigo-300' : 'bg-red-300' }}">{{ $sex }}</p>
+    <p class="absolute top-0 left-0 p-2 text-white font-bold rounded-br-lg {{ $sex === 'オス' ? 'bg-indigo-300' : ($sex === '不明' ? 'bg-gray-400' : 'bg-red-300') }}">{{ $sex }}</p>
 </a>

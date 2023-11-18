@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ショップ詳細</title>
+    <title>{{ $shop->shop_name }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
         document.addEventListener( 'DOMContentLoaded', function() {
-            const splide = new Splide( '.splide', {
-                pagination: true,
-                type: 'fade',
+            const main = new Splide( '#js-main-splide', {
+                pagination: false,
                 type: 'loop',
+                drag: true,
+                pagination: false,
             });
-            splide.mount();
+            const thumbnails = new Splide( '#js-pager-splide', {
+                rewind      : true,
+                pagination  : false,
+                cover       : true,
+                isNavigation: true,
+                arrows    : false,
+            });
+            main.sync( thumbnails );
+            main.mount();
+            thumbnails.mount();
         });
     </script>
 </head>
@@ -22,71 +33,130 @@
     <div>
         <x-header></x-header>
         <main>
-
+            <x-heading-lv1>{{ $shop->shop_name }}</x-heading-lv1>
+            <section class="container m-auto py-10 px-4">
+                @if($shop->shop_image1 || $shop->shop_image2 || $shop->shop_image3 ||  $shop->shop_image4)
+                    <div class="splide relative m-auto mb-2 max-w-2xl w-full aspect-video" id="js-main-splide">
+                        <div class="splide__track h-full">
+                            <ul class="splide__list">
+                                @if($shop->shop_image1)
+                                    <li class="splide__slide">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($shop->shop_image2)
+                                    <li class="splide__slide">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image2) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($shop->shop_image3)
+                                    <li class="splide__slide">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image3) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($shop->shop_image4)
+                                    <li class="splide__slide">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image4) }}" alt="">
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                        <x-btn-slider></x-btn-slider>
+                    </div>
+                    <div class="splide relative m-auto max-w-2xl w-full aspect-video h-[15vw] max-h-[100px]" id="js-pager-splide">
+                        <div class="splide__track h-full mr-[-8px]">
+                            <ul class="splide__list gap-2">
+                                @if($shop->shop_image1)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($shop->shop_image2)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image2) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($shop->shop_image3)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image3) }}" alt="">
+                                    </li>
+                                @endif
+                                @if($shop->shop_image4)
+                                    <li class="splide__slide max-w-[calc(25%-8px)]">
+                                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $shop->shop_image4) }}" alt="">
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+            </section>
+            <section class="container m-auto py-10 px-4">
+                <x-heading-lv2>ショップ紹介</x-heading-lv2>
+                <p class="mb-10">{{ $shop->description }}</p>
+                <div class="flex justify-center items-center">
+                    <x-btn01
+                        link="/pet/?shop={{ $shop->id }}"
+                        text="このショップの生体一覧"
+                    />
+                </div>
+            </section>
+            <section class="container m-auto py-10 px-4">
+                <x-heading-lv2>ショップ詳細</x-heading-lv2>
+                <div class="grid gap-5">
+                    <x-list01
+                        term="公式サイト"
+                        :desc="$shop->website"
+                    />
+                    <x-list01
+                        term="営業時間"
+                        :desc="$shop->business_hours"
+                    />
+                    <x-list01
+                        term="定休日"
+                        :desc="$shop->regular_holiday"
+                    />
+                    <x-list01
+                        term="電話番号"
+                        :desc="$shop->phone"
+                    />
+                    <x-list01
+                        term="動物取扱責任者"
+                        :desc="$shop->animal_handler"
+                    />
+                    <x-list01
+                        term="都道府県"
+                        :desc="$shop->pref"
+                    />
+                    <x-list01
+                        term="郵便番号"
+                        :desc="$shop->postal_code"
+                    />
+                    <x-list01
+                        term="住所"
+                        :desc="$shop->address"
+                    />
+                    <x-list01
+                        term="アクセス"
+                        :desc="$shop->access_method"
+                    />
+                    <x-list01
+                        term="店舗紹介"
+                        :desc="$shop->description"
+                    />
+                    <div class="w-full aspect-video overflow-hidden mb-5 [&>iframe]:w-full [&>iframe]:h-full">
+                        {!! $shop->map !!}
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <x-btn01
+                            link="/pet/?shop={{ $shop->id }}"
+                            text="このショップの生体一覧"
+                        />
+                    </div>
+                </div>
+            </section>
         </main>
+        <x-footer></x-footer>
     </div>
-    <h1>{{ $shop->shop_name }}</h1>
-    <p>{{ $shop->description }}</p>
-    <div>
-        <a href="/pet/?shop={{ $shop->id }}">このショップの生体一覧</a>
-    </div>
-    <section class="splide">
-        <div class="splide__track">
-            <ul class="splide__list">
-                <li class="splide__slide">
-                    <img src="{{ asset('storage/' . $shop->shop_image1) }}" alt="">
-                </li>
-                <li class="splide__slide">
-                    <img src="{{ asset('storage/' . $shop->shop_image2) }}" alt="">
-                </li>
-                <li class="splide__slide">
-                    <img src="{{ asset('storage/' . $shop->shop_image3) }}" alt="">
-                </li>
-                <li class="splide__slide">
-                    <img src="{{ asset('storage/' . $shop->shop_image4) }}" alt="">
-                </li>
-            </ul>
-        </div>
-    </section>
-    <dl>
-        <dt>公式サイト</dt>
-        <dd>{{ $shop->website }}</dd>
-    </dl>
-    <dl>
-        <dt>営業時間</dt>
-        <dd>{{ $shop->business_hours }}</dd>
-    </dl>
-    <dl>
-        <dt>定休日</dt>
-        <dd>{{ $shop->regular_holiday }}</dd>
-    </dl>
-    <dl>
-        <dt>電話番号</dt>
-        <dd>{{ $shop->phone }}</dd>
-    </dl>
-    <dl>
-        <dt>動物取扱責任者</dt>
-        <dd>{{ $shop->animal_handler }}</dd>
-    </dl>
-    <dl>
-        <dt>都道府県</dt>
-        <dd>{{ $shop->pref }}</dd>
-    </dl>
-    <dl>
-        <dt>郵便番号</dt>
-        <dd>{{ $shop->postal_code }}</dd>
-    </dl>
-    <dl>
-        <dt>住所</dt>
-        <dd>{{ $shop->address }}</dd>
-    </dl>
-    <dl>
-        <dt>アクセス</dt>
-        <dd>{{ $shop->access_method }}</dd>
-    </dl>
-    <dl>
-        <dt>マップ</dt>
-        <dd>{!! $shop->map !!}</dd>
-    </dl>
 </body>
 </html>

@@ -8,7 +8,7 @@
             <section class="lg:flex lg:items-center lg:justify-between lg:gap-10 container m-auto py-10 px-4">
                 <div>
                     <h1 class="mb-8 sm:mb-10 text-slate-700 font-bold text-4xl sm:text-5xl md:text-6xl">レプナビ</h1>
-                    <p class="mb-5 text-slate-700 text-sm md:text-base lg:text-xl">
+                    <p class="mb-5 text-slate-700 text-sm md:text-base">
                         数ある種類やモルフの中から理想の生体を見つけるのは大変です。レプナビなら種名やモルフ名で欲しい生体をすぐに見つけることができます。
                     </p>
                     <x-search
@@ -39,7 +39,7 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="grid place-content-center">
+                    <div class="flex justify-center">
                         <x-btn01
                             :link="'/pet/'"
                             :text="'生体一覧'"
@@ -114,7 +114,7 @@
                         :title="'その他'"
                     />
                 </div>
-                <div class="grid place-content-center">
+                <div class="flex justify-center">
                     <x-btn01
                         :link="'/pet/'"
                         :text="'生体一覧'"
@@ -131,42 +131,42 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 mb-10">
                     <x-card02
-                        :link="'/pet?category=東京'"
+                        :link="'/shop?pref=東京'"
                         :src="'img/img-tokyo.jpg'"
                         :alt="'東京'"
                         :text="'tokyo'"
                         :title="'東京'"
                     />
                     <x-card02
-                        :link="'/pet?category=神奈川'"
+                        :link="'/shop?pref=神奈川'"
                         :src="'img/img-kanagawa.jpg'"
                         :alt="'神奈川'"
                         :text="'kanagawa'"
                         :title="'神奈川'"
                     />
                     <x-card02
-                        :link="'/pet?category=大阪'"
+                        :link="'/shop?pref=大阪'"
                         :src="'img/img-osaka.jpg'"
                         :alt="'大阪'"
                         :text="'osaka'"
                         :title="'大阪'"
                     />
                     <x-card02
-                        :link="'/pet?category=京都'"
+                        :link="'/shop?pref=京都'"
                         :src="'img/img-kyoto.jpg'"
                         :alt="'京都'"
                         :text="'kyoto'"
                         :title="'京都'"
                     />
                     <x-card02
-                        :link="'/pet?category=愛知'"
+                        :link="'/shop?pref=愛知'"
                         :src="'img/img-aichi.jpg'"
                         :alt="'愛知'"
                         :text="'aichi'"
                         :title="'愛知'"
                     />
                     <x-card02
-                        :link="'/pet?category=福岡'"
+                        :link="'/shop?pref=福岡'"
                         :src="'img/img-fukuoka.jpg'"
                         :alt="'福岡'"
                         :text="'fukuoka'"

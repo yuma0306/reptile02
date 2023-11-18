@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('weight')->nullable()->after('size');
             $table->date('arrival_day')->nullable()->after('size');
 
-            // 名前変更
-            $table->renameColumn('text', 'description')->nullable();
+            // 名前変更（正しい形に修正）
+            $table->renameColumn('text', 'description');
         });
     }
 
@@ -33,9 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('your_table_name', function (Blueprint $table) {
+        Schema::table('pets', function (Blueprint $table) {
             // 名前変更を元に戻す
-            $table->renameColumn('description', 'text')->nullable(false);
+            $table->renameColumn('description', 'text');
 
             // 新しいカラムを削除
             $table->dropColumn('morph');
@@ -47,7 +47,6 @@ return new class extends Migration
             $table->string('size')->nullable(false)->change();
             $table->string('price')->nullable(false)->change();
             $table->string('age')->nullable(false)->change();
-            $table->string('price')->nullable(false)->change();
         });
     }
 };
