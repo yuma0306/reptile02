@@ -13,7 +13,7 @@
     @endphp
     <x-breadcrumb :breads="$breads" />
     <div class="container m-auto py-10 px-4">
-        <form action="{{ route('owner.shop.store') }}" method="post" enctype="multipart/form-data">
+        <form class="mb-10 bg-white p-5" action="{{ route('owner.shop.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <x-form-group>
                 <x-form-label

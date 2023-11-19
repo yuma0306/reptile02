@@ -1,18 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            ショップ「{{ $shop->shop_name }}」の店舗情報
+            ショップ情報の編集
         </h2>
     </x-slot>
     @php
         $breads = [
             ['label' => 'ダッシュボード', 'url' => '/owner'],
             ['label' => Auth::user()->name . 'さんのショップ一覧', 'url' => "/owner/shop"],
-            ['label' => "ショップ「{$shop->shop_name}」の店舗情報", 'url' => ''],
+            ['label' => "ショップ情報の編集", 'url' => ''],
         ];
     @endphp
     <x-breadcrumb :breads="$breads" />
-    <div class="container m-auto pt-2 py-10 px-4">
+    <div class="container m-auto pt-2 pb-10 px-4">
         <form class="mb-10 bg-white p-5" action="{{ route('owner.shop.update', ['id' => $shop->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -178,15 +178,15 @@
             </x-form-group>
             <x-form-group>
                 <x-form-label
-                label="任意"
-                text="以降住所"
-                for="address"
+                    label="任意"
+                    text="以降住所"
+                    for="address"
                 />
                 <x-form-input
-                type="text"
-                name="address"
-                id="address"
-                value="{{ $shop->address }}"
+                    type="text"
+                    name="address"
+                    id="address"
+                    value="{{ $shop->address }}"
                 />
             </x-form-group>
             <x-form-group>

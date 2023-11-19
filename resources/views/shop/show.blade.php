@@ -91,68 +91,92 @@
                     </div>
                 @endif
             </section>
-            <section class="container m-auto py-10 px-4">
-                <x-heading-lv2>ショップ紹介</x-heading-lv2>
-                <p class="mb-10">{{ $shop->description }}</p>
-                <div class="flex justify-center items-center">
-                    <x-btn01
-                        link="/pet/?shop={{ $shop->id }}"
-                        text="このショップの生体一覧"
-                    />
-                </div>
-            </section>
-            <section class="container m-auto py-10 px-4">
-                <x-heading-lv2>ショップ詳細</x-heading-lv2>
-                <div class="grid gap-5">
-                    <x-list01
-                        term="公式サイト"
-                        :desc="$shop->website"
-                    />
-                    <x-list01
-                        term="営業時間"
-                        :desc="$shop->business_hours"
-                    />
-                    <x-list01
-                        term="定休日"
-                        :desc="$shop->regular_holiday"
-                    />
-                    <x-list01
-                        term="電話番号"
-                        :desc="$shop->phone"
-                    />
-                    <x-list01
-                        term="動物取扱責任者"
-                        :desc="$shop->animal_handler"
-                    />
-                    <x-list01
-                        term="都道府県"
-                        :desc="$shop->pref"
-                    />
-                    <x-list01
-                        term="郵便番号"
-                        :desc="$shop->postal_code"
-                    />
-                    <x-list01
-                        term="住所"
-                        :desc="$shop->address"
-                    />
-                    <x-list01
-                        term="アクセス"
-                        :desc="$shop->access_method"
-                    />
-                    <x-list01
-                        term="店舗紹介"
-                        :desc="$shop->description"
-                    />
-                    <div class="w-full aspect-video overflow-hidden mb-5 [&>iframe]:w-full [&>iframe]:h-full">
-                        {!! $shop->map !!}
-                    </div>
+            @if($shop->description)
+                <section class="container m-auto py-10 px-4">
+                    <x-heading-lv2>ショップ紹介</x-heading-lv2>
+                    <p class="mb-10">{{ $shop->description }}</p>
                     <div class="flex justify-center items-center">
                         <x-btn01
                             link="/pet/?shop={{ $shop->id }}"
                             text="このショップの生体一覧"
                         />
                     </div>
+                </section>
+            @endif
+            <section class="container m-auto py-10 px-4">
+                <x-heading-lv2>ショップ詳細</x-heading-lv2>
+                <div class="grid gap-5 mb-10">
+                    @if($shop->website)
+                        <x-list01
+                            term="公式サイト"
+                            :desc="$shop->website"
+                        />
+                    @endif
+                    @if($shop->business_hours)
+                        <x-list01
+                            term="営業時間"
+                            :desc="$shop->business_hours"
+                        />
+                    @endif
+                    @if($shop->regular_holiday)
+                        <x-list01
+                            term="定休日"
+                            :desc="$shop->regular_holiday"
+                        />
+                    @endif
+                    @if($shop->phone)
+                        <x-list01
+                            term="電話番号"
+                            :desc="$shop->phone"
+                        />
+                    @endif
+                    @if($shop->animal_handler)
+                        <x-list01
+                            term="動物取扱責任者"
+                            :desc="$shop->animal_handler"
+                        />
+                    @endif
+                    @if($shop->pref)
+                        <x-list01
+                            term="都道府県"
+                            :desc="$shop->pref"
+                        />
+                    @endif
+                    @if($shop->postal_code)
+                        <x-list01
+                            term="郵便番号"
+                            :desc="$shop->postal_code"
+                        />
+                    @endif
+                    @if($shop->address)
+                        <x-list01
+                            term="住所"
+                            :desc="$shop->address"
+                        />
+                    @endif
+                    @if($shop->access_method)
+                        <x-list01
+                            term="アクセス"
+                            :desc="$shop->access_method"
+                        />
+                    @endif
+                    @if($shop->description)
+                        <x-list01
+                            term="店舗紹介"
+                            :desc="$shop->description"
+                        />
+                    @endif
+                    @if($shop->map)
+                        <div class="w-full aspect-video overflow-hidden mb-5 [&>iframe]:w-full [&>iframe]:h-full">
+                            {!! $shop->map !!}
+                        </div>
+                    @endif
+                </div>
+                <div class="flex justify-center items-center">
+                    <x-btn01
+                        link="/pet/?shop={{ $shop->id }}"
+                        text="このショップの生体一覧"
+                    />
                 </div>
             </section>
         </main>

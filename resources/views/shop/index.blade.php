@@ -71,11 +71,11 @@
                 </div>
                 @if($shops->isEmpty())
                     @if(isset($pref))
-                    <p>{{$pref}}のショップはまだありません</p>
+                        <p>{{$pref}}のショップはまだありません</p>
                     @endif
                 @else
-                    @foreach($shops as $shop)
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        @foreach($shops as $shop)
                             @if($shop->public_flag === 0)
                                 <x-card04
                                     :link="'/shop/' . $shop->id"
@@ -83,11 +83,12 @@
                                     :title="$shop->shop_name"
                                 />
                             @endif
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 @endif
             </section>
         </main>
+        <x-footer></x-footer>
     </div>
 </body>
 </html>

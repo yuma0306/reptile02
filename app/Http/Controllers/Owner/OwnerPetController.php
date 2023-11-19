@@ -55,7 +55,7 @@ class OwnerPetController extends Controller
         return redirect()->route('owner.shop.pet.index', ['id' => $shop->id])->with('success', '生体情報が登録されました');
     }
 
-    // ペット情報の更新
+    // 生体情報の更新
     public function edit($shop_id, $pet_id)
     {
         $shop = auth()->user()->shops()->findOrFail($shop_id);
@@ -63,7 +63,7 @@ class OwnerPetController extends Controller
         return view('owner.shop.pet.edit', compact('shop', 'pet'));
     }
 
-    // ペット情報の更新
+    // 生体情報の更新
     public function update(Request $request, $shop_id, $pet_id)
     {
         $validationRules = $this->validateRules();
@@ -90,7 +90,7 @@ class OwnerPetController extends Controller
         return redirect()->route('owner.shop.pet.index', ['id' => $shop->id])->with('success', '生体情報が更新されました');
     }
 
-    // ペット情報削除
+    // 生体情報削除
     public function destroy($shop_id, $pet_id)
     {
         $shop = auth()->user()->shops()->findOrFail($shop_id);
