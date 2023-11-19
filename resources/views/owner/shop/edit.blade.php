@@ -19,7 +19,7 @@
             <x-form-group>
                 <x-form-label
                     label="任意"
-                    text="店舗画像"
+                    text="ショップ画像"
                     for="shop_image1"
                 />
                 <div class="flex items-end overflow-x-auto gap-3 whitespace-nowrap pb-3">
@@ -245,7 +245,7 @@
             </x-form-group>
             <x-btn-submit
                 type="submit"
-                text="更新する"
+                text="更新"
             />
         </form>
         <form class="flex flex-col items-end" action="{{ route('owner.shop.destroy', ['id' => $shop->id]) }}" method="post">
