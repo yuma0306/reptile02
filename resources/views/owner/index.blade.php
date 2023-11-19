@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ Auth::user()->name }}さんの管理画面
+            {{ Auth::user()->name }}さんのダッシュボード
         </h2>
     </x-slot>
     <div class="container m-auto py-10 px-4">

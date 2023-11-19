@@ -17,7 +17,7 @@
         <main>
             <x-heading-lv1>{{ $title }}</x-heading-lv1>
             <section class="container m-auto py-10 px-4">
-                <div class="flex flex-wrap justify-center items-center gap-5 mb-10">
+                <div class="flex flex-wrap items-center gap-5 mb-10">
                     <x-btn-select>
                         <option value="" selected disabled>カテゴリーから探す</option>
                         <option value="/pet?category=ニシキヘビ">ニシキヘビ</option>

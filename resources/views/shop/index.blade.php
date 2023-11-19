@@ -13,7 +13,7 @@
                 @endif
             </x-heading-lv1>
             <section class="container m-auto py-10 px-4">
-                <div class="flex flex-wrap justify-center items-center gap-5 mb-10">
+                <div class="flex flex-wrap items-center gap-5 mb-10">
                     <x-btn-select>
                         <option value="" selected disabled>都道府県から探す</option>
                         <option value="/shop?pref=北海道">北海道</option>
@@ -71,11 +71,11 @@
                 </div>
                 @if($shops->isEmpty())
                     @if(isset($pref))
-                    <p>{{$pref}}のショップはまだありません</p>
+                        <p>{{$pref}}のショップはまだありません</p>
                     @endif
                 @else
-                    @foreach($shops as $shop)
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        @foreach($shops as $shop)
                             @if($shop->public_flag === 0)
                                 <x-card04
                                     :link="'/shop/' . $shop->id"
@@ -83,11 +83,12 @@
                                     :title="$shop->shop_name"
                                 />
                             @endif
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 @endif
             </section>
         </main>
+        <x-footer></x-footer>
     </div>
 </body>
 </html>
