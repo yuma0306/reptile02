@@ -27,15 +27,13 @@
 - 店舗名で店舗を検索し、「店舗情報」「その店舗で販売されている生体情報」を確認できる
 - 都道府県から店舗一覧を確認することができる
 
-### 使用技術
+### 開発環境
 
 - Laravel10
 - Blade Template
-- Tailwind CSS
 - Laravel Breeze（ログイン機能）
-
-### 開発環境
-
 - Laravel Sail（Docker）
+- Vanilla JS
+- Tailwind CSS
 
 ![レプナビ](https://github.com/yuma0306/reptile02/blob/main/public/img/screen-shot01.png)
