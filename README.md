@@ -36,4 +36,22 @@
 - Vanilla JS
 - Tailwind CSS
 
+## URL 構成
+
+- TOP：/
+- ショップ一覧：/shop
+- ショップ情報詳細：/shop/{shop_id}
+- ペット情報一覧：/pet
+- ペット情報詳細：/pet/{pet_id}
+- オーナー登録画面：/register
+- オーナーログイン画面：/login
+- オーナーダッシュボード：/owner
+- オーナープロフィール情報：/owner/profile
+- ショップ登録一覧：/owner/shop
+- ショップ情報登録：/owner/shop/create
+- ショップ情報更新：/owner/shop/{shop_id}
+- ペット登録一覧：/owner/shop/{shop_id}/pet
+- ペット情報登録：/owner/shop/{shop_id}/pet/create
+- ペット情報更新：/owner/shop/{shop_id}/pet/{pet_id}
+
 ![レプナビ](https://github.com/yuma0306/reptile02/blob/main/public/img/screen-shot01.png)
